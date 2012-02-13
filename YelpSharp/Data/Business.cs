@@ -99,5 +99,20 @@ namespace YelpSharp.Data
         /// list of deals for this business (optional: this field is present only if there's a Deal)
         /// </summary>
         public List<Deal> deals { get; set; }
+
+        /// <summary>
+        /// Whether business has been claimed by a business owner
+        /// </summary>
+        public bool is_claimed { get; set; }
+
+        /// <summary>
+        /// Whether business has been (permanently) closed
+        /// </summary>
+        public bool is_closed { get; set; }
+
+        /// <summary>
+        /// List of up to 3 review snippets for the business
+        /// </summary>
+        public List<Review> reviews { get; set; }
 	}
 }

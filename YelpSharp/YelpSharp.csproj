@@ -61,8 +61,10 @@
     <Compile Include="Data\Options\LocationOptionBase.cs" />
     <Compile Include="Data\Options\LocationOptions.cs" />
     <Compile Include="Data\Region.cs" />
+    <Compile Include="Data\Review.cs" />
     <Compile Include="Data\SearchResults.cs" />
     <Compile Include="Data\Span.cs" />
+    <Compile Include="Data\User.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Data\Options\SearchOptions.cs" />
     <Compile Include="Util\DictionaryExtension.cs" />

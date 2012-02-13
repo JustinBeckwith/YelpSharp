@@ -50,6 +50,10 @@ namespace YelpSharp
 
         #region Constructors
 
+        /// <summary>
+        /// Driver for the Yelp API
+        /// </summary>
+        /// <param name="options">OAuth options for using the Yelp API</param>
         public Yelp(Options options)
 		{
 			this.options = options;
@@ -73,7 +77,7 @@ namespace YelpSharp
         /// <returns>a strongly typed result</returns>
         public SearchResults Search(string term, string location)
 		{
-			var raw = makeRequest(new Dictionary<string, string>
+			var raw = makeRequest("search", null, new Dictionary<string, string>
 				{
 					{ "term", term },
 					{ "location", location }
@@ -91,8 +95,24 @@ namespace YelpSharp
         /// <returns></returns>
         public SearchResults Search(YelpSharp.Data.Options.SearchOptions options)
         {
-            var raw = makeRequest(options.GetParameters());
+            var raw = makeRequest("search", null, options.GetParameters());
             var results = JsonConvert.DeserializeObject<SearchResults>(raw);
+            return results;
+        }
+
+        #endregion
+
+
+        #region GetBusiness
+        /// <summary>
+        /// search the list of business based on name
+        /// </summary>
+        /// <param name="name">name of the business you want to get information on</param>
+        /// <returns>Business details</returns>
+        public Business GetBusiness(string name)
+        {
+            var raw = makeRequest("business", name, null);
+            var results = JsonConvert.DeserializeObject<Business>(raw);
             return results;
         }
 
@@ -111,16 +131,22 @@ namespace YelpSharp
         /// </summary>
         /// <param name="parameters">hash array of qs parameters</param>
         /// <returns>plain text json response from the api</returns>
-        protected string makeRequest(Dictionary<string, string> parameters)
+        protected string makeRequest(string area, string id, Dictionary<string, string> parameters)
 		{
 			// build the url with parameters
-			var url = "http://api.yelp.com/v2/search";
-			var firstp = true;
-			foreach(var p in parameters) {
-				url += firstp ? "?" : "&";
-				firstp = false;
-				url += p.Key + "=" + HttpUtility.UrlEncode(p.Value);
-			}			
+			var url = rootUri + area;
+            if (!String.IsNullOrEmpty(id)) url += "/" + HttpUtility.UrlEncode(id);
+
+            if (parameters != null)
+            {
+                var firstp = true;
+                foreach (var p in parameters)
+                {
+                    url += firstp ? "?" : "&";
+                    firstp = false;
+                    url += p.Key + "=" + HttpUtility.UrlEncode(p.Value);
+                }
+            }
 
 			// generate the access token
 			var ot = new OAuthTokens();

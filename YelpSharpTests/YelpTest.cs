@@ -143,6 +143,27 @@ namespace YelpSharpTests
         }
         #endregion
 
+        #region BusinessTest
+        /// <summary>
+        /// test loading a business explicitely by name
+        /// </summary>
+        [TestMethod]
+        public void BusinessTest()
+        {
+            var o = GetOptions();
+            var y = new Yelp(o);
+            var results = y.GetBusiness("yelp-san-francisco");
+            Console.WriteLine(results);
+        }
+        #endregion
+
+
+        //--------------------------------------------------------------------------
+        //
+        //	Internal Methods
+        //
+        //--------------------------------------------------------------------------
+
         #region GetOptions
         /// <summary>
         /// return the oauth options in this case from app.config
