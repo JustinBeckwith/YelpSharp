@@ -1,0 +1,89 @@
+﻿@model YelpSharp.Data.Business
+
+<fieldset>
+    <legend>Business</legend>
+
+    <h2>@Html.ActionLink(Model.name, "details", new { id=Model.id, controller="business" })</h2>
+
+    <img src="@Model.image_url" />
+    <a href="@Model.url" target="_blank">Listing on Yelp.com</a>    
+
+
+    <div class="display-label">mobile_url</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mobile_url)
+    </div>
+
+    <div class="display-label">phone</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phone)
+    </div>
+
+    <div class="display-label">display_phone</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.display_phone)
+    </div>
+
+    <div class="display-label">review_count</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.review_count)
+    </div>
+
+    <div class="display-label">distance</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.distance)
+    </div>
+
+    <div class="display-label">rating</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.rating)
+    </div>
+
+    <div class="display-label">rating_img_url</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.rating_img_url)
+    </div>
+
+    <div class="display-label">rating_img_url_small</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.rating_img_url_small)
+    </div>
+
+    <div class="display-label">rating_img_url_large</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.rating_img_url_large)
+    </div>
+
+    <div class="display-label">snippet_text</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.snippet_text)
+    </div>
+
+    <div class="display-label">snippet_image_url</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.snippet_image_url)
+    </div>
+
+    <div class="display-label">is_claimed</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.is_claimed)
+    </div>
+
+
+    <div class="display-label">is_closed</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.is_closed)
+    </div>
+
+    <!-- render reviews if available -->
+    @if (Model.reviews != null && Model.reviews.Count > 0) {
+        <h2>Reviews</h2>  
+        foreach (var review in Model.reviews) {
+            @Html.Partial("ReviewCard", review)
+        }
+    }
+
+
+
+
+</fieldset>

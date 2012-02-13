@@ -111,7 +111,7 @@ namespace YelpSharpTests
 		{
             var o = GetOptions();
 			var y = new Yelp(o);
-			var results = y.Search("coffee", "seattle");
+			var results = y.Search("coffee", "seattle, wa");
 			Console.WriteLine(results);
         }
         #endregion

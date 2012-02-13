@@ -1,0 +1,39 @@
+﻿@model YelpSharp.Data.SearchResults
+
+@{
+    ViewBag.Title = "Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Results</h2>
+
+<fieldset>
+    <legend>SearchResults</legend>
+
+    <div class="display-label">total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.total)
+    </div>
+
+
+    <div>
+        <h2>Region</h2>
+        @Html.Partial("RegionCard", @Model.region)
+    </div>
+
+
+    <div>
+        <h2>Businesses</h2>
+        @foreach (var b in @Model.businesses)
+        {
+            @Html.Partial("BusinessCard", b)
+        }
+            
+    </div>
+
+
+
+</fieldset>
+<p>
+    @Html.ActionLink("Back to Search", "Index")
+</p>

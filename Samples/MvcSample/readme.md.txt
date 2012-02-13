@@ -1,0 +1,1 @@
+This is an example of using YelpSharp with an ASP.NET MVC project.  the interesting parts are in HomeController.cs, and the partial views in views/shared.

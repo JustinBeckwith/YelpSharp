@@ -159,11 +159,23 @@ namespace YelpSharp
 			var formattedUri = String.Format(CultureInfo.InvariantCulture, url, "");
 			var uri = new Uri(formattedUri);
 			var wb = new WebRequestBuilder(uri, HTTPVerb.GET, ot);
-			var wr = wb.ExecuteRequest();
-			var sr = new StreamReader(wr.GetResponseStream());			
-			var data =  sr.ReadToEnd();
 
-            return data;
+            var data = "";
+            try
+            {
+                var wr = wb.ExecuteRequest();
+                var sr = new StreamReader(wr.GetResponseStream());
+                data = sr.ReadToEnd();
+
+                return data;
+            }
+            catch (WebException exception)
+            {
+                HttpWebResponse errorResponse = (HttpWebResponse)exception.Response;
+                var stream = new StreamReader(errorResponse.GetResponseStream());
+                data = stream.ReadToEnd();
+                throw;
+            }   
         }
         #endregion
 
