@@ -39,3 +39,6 @@ Thumbs.db
 *.suo
 TestResults/*
 *.pdb
+[Oo]bj/
+[Bb]in/
+YelpSharpTests/App.config
