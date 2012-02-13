@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OAuth</name>
+    </assembly>
+    <members>
+        <member name="T:OAuth.OAuthRequestType">
+            <summary>
+            The types of OAuth requests possible in a typical workflow.
+            Used for validation purposes and to build static helpers.
+            </summary>
+        </member>
+        <member name="T:OAuth.OAuthRequest">
+            <summary>
+            A request wrapper for the OAuth 1.0a specification.
+            </summary>
+            <seealso href="http://oauth.net/"/>
+        </member>
+        <member name="P:OAuth.OAuthRequest.RequestUrl">
+            <seealso cref="!:http://oauth.net/core/1.0#request_urls"/>
+        </member>
+        <member name="T:OAuth.OAuthSignatureMethod">
+            <summary>
+            The encryption method to use when hashing a request signature.
+            </summary>
+        </member>
+        <member name="T:OAuth.OAuthTools">
+            <summary>
+            A general purpose toolset for creating components of an OAuth request.
+             </summary>
+            <seealso href="http://oauth.net/"/>
+        </member>
+        <member name="F:OAuth.OAuthTools._encoding">
+            <summary>
+            All text parameters are UTF-8 encoded (per section 5.1).
+            </summary>
+            <seealso href="http://www.hueniverse.com/hueniverse/2008/10/beginners-gui-1.html"/> 
+        </member>
+        <member name="M:OAuth.OAuthTools.GetNonce">
+            <summary>
+            Generates a random 16-byte lowercase alphanumeric string. 
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#nonce"/>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.GetTimestamp">
+            <summary>
+            Generates a timestamp based on the current elapsed seconds since '01/01/1970 0000 GMT"
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#nonce"/>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.GetTimestamp(System.DateTime)">
+            <summary>
+            Generates a timestamp based on the elapsed seconds of a given time since '01/01/1970 0000 GMT"
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#nonce"/>
+            <param name="dateTime">A specified point in time.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.UrlEncodeRelaxed(System.String)">
+            <summary>
+            URL encodes a string based on section 5.1 of the OAuth spec.
+            Namely, percent encoding with [RFC3986], avoiding unreserved characters,
+            upper-casing hexadecimal characters, and UTF-8 encoding for text value pairs.
+            </summary>
+            <param name="value"></param>
+            <seealso href="http://oauth.net/core/1.0#encoding_parameters" />
+        </member>
+        <member name="M:OAuth.OAuthTools.UrlEncodeStrict(System.String)">
+            <summary>
+            URL encodes a string based on section 5.1 of the OAuth spec.
+            Namely, percent encoding with [RFC3986], avoiding unreserved characters,
+            upper-casing hexadecimal characters, and UTF-8 encoding for text value pairs.
+            </summary>
+            <param name="value"></param>
+            <seealso href="http://oauth.net/core/1.0#encoding_parameters" />
+        </member>
+        <member name="M:OAuth.OAuthTools.NormalizeRequestParameters(OAuth.WebParameterCollection)">
+            <summary>
+            Sorts a collection of key-value pairs by name, and then value if equal,
+            concatenating them into a single string. This string should be encoded
+            prior to, or after normalization is run.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.1.1"/>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.SortParametersExcludingSignature(OAuth.WebParameterCollection)">
+            <summary>
+            Sorts a <see cref="T:OAuth.WebParameterCollection"/> by name, and then value if equal.
+            </summary>
+            <param name="parameters">A collection of parameters to sort</param>
+            <returns>A sorted parameter collection</returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.ConstructRequestUrl(System.Uri)">
+            <summary>
+            Creates a request URL suitable for making OAuth requests.
+            Resulting URLs must exclude port 80 or port 443 when accompanied by HTTP and HTTPS, respectively.
+            Resulting URLs must be lower case.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.1.2"/>
+            <param name="url">The original request URL</param>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.ConcatenateRequestElements(System.String,System.String,OAuth.WebParameterCollection)">
+            <summary>
+            Creates a request elements concatentation value to send with a request. 
+            This is also known as the signature base.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.1.3"/>
+            <seealso href="http://oauth.net/core/1.0#sig_base_example"/>
+            <param name="method">The request's HTTP method type</param>
+            <param name="url">The request URL</param>
+            <param name="parameters">The request's parameters</param>
+            <returns>A signature base string</returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.GetSignature(OAuth.OAuthSignatureMethod,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret.
+            This method is used when the token secret is currently unknown.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer key</param>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.GetSignature(OAuth.OAuthSignatureMethod,OAuth.OAuthSignatureTreatment,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret.
+            This method is used when the token secret is currently unknown.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureTreatment">The treatment to use on a signature value</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer key</param>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.GetSignature(OAuth.OAuthSignatureMethod,System.String,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret and a known token secret.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer secret</param>
+            <param name="tokenSecret">The token secret</param>
+            <returns></returns>
+        </member>
+        <member name="M:OAuth.OAuthTools.GetSignature(OAuth.OAuthSignatureMethod,OAuth.OAuthSignatureTreatment,System.String,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret and a known token secret.
+            </summary>
+            <seealso href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureTreatment">The treatment to use on a signature value</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer secret</param>
+            <param name="tokenSecret">The token secret</param>
+            <returns></returns>
+        </member>
+        <member name="T:OAuth.OAuthSignatureTreatment">
+            <summary>
+            Specifies whether the final signature value should be escaped during calculation.
+            This might be necessary for some OAuth implementations that do not obey the default
+            specification for signature escaping.
+            </summary>
+        </member>
+    </members>
+</doc>
