@@ -42,3 +42,4 @@ TestResults/*
 [Oo]bj/
 [Bb]in/
 YelpSharpTests/App.config
+*.nupkg

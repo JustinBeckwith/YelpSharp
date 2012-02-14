@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("YelpSharp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("YelpSharp is a .NET wrapper for the Yelp.com REST API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Justin Beckwith")]
 [assembly: AssemblyProduct("YelpSharp")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
