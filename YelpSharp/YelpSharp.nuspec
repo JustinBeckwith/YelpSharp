@@ -13,5 +13,6 @@
     <releaseNotes>Initial release of the API</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>REST API Social</tags>
+    <iconUrl>http://justinbeckwith.github.com/YelpSharp/icon.png</iconUrl>
   </metadata>
 </package>

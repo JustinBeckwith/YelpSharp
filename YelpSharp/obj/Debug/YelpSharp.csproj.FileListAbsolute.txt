@@ -1,13 +1,3 @@
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\YelpSharp.dll
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\YelpSharp.pdb
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\obj\Debug\ResolveAssemblyReference.cache
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.dll
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.pdb
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.dll
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\Twitterizer2.dll
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.pdb
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.xml
-c:\users\justbe\Dropbox\code\YelpSharp\YelpSharp\bin\Debug\Twitterizer2.xml
 C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\YelpSharp.dll
 C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\YelpSharp.pdb
 C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.dll
@@ -18,3 +8,13 @@ C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Twitteriz
 C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.csprojResolveAssemblyReference.cache
 C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.dll
 C:\Users\justbe.REDMOND.000\Dropbox\Code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.pdb
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\YelpSharp.dll
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\YelpSharp.pdb
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Twitterizer2.dll
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\bin\Debug\Twitterizer2.xml
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.dll
+C:\Users\justbe\Dropbox\Code\YelpSharp\YelpSharp\obj\Debug\YelpSharp.pdb
