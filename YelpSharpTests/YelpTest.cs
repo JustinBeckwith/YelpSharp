@@ -10,11 +10,11 @@ using YelpSharp.Data.Options;
 
 namespace YelpSharpTests
 {
-	/// <summary>
-	/// Summary description for UnitTest1
-	/// </summary>
-	[TestClass]
-	public class YelpTest
+    /// <summary>
+    /// Summary description for UnitTest1
+    /// </summary>
+    [TestClass]
+    public class YelpTest
     {
         //--------------------------------------------------------------------------
         //
@@ -66,11 +66,11 @@ namespace YelpSharpTests
         /// 
         /// </summary>
         public YelpTest()
-		{
-			//
-			// TODO: Add constructor logic here
-			//
-		}
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
 
         #endregion
 
@@ -80,39 +80,39 @@ namespace YelpSharpTests
         //
         //--------------------------------------------------------------------------
 
-		#region Additional test attributes
-		//
-		// You can use the following additional attributes as you write your tests:
-		//
-		// Use ClassInitialize to run code before running the first test in the class
-		// [ClassInitialize()]
-		// public static void MyClassInitialize(TestContext testContext) { }
-		//
-		// Use ClassCleanup to run code after all tests in a class have run
-		// [ClassCleanup()]
-		// public static void MyClassCleanup() { }
-		//
-		// Use TestInitialize to run code before running each test 
-		// [TestInitialize()]
-		// public void MyTestInitialize() { }
-		//
-		// Use TestCleanup to run code after each test has run
-		// [TestCleanup()]
-		// public void MyTestCleanup() { }
-		//
-		#endregion
+        #region Additional test attributes
+        //
+        // You can use the following additional attributes as you write your tests:
+        //
+        // Use ClassInitialize to run code before running the first test in the class
+        // [ClassInitialize()]
+        // public static void MyClassInitialize(TestContext testContext) { }
+        //
+        // Use ClassCleanup to run code after all tests in a class have run
+        // [ClassCleanup()]
+        // public static void MyClassCleanup() { }
+        //
+        // Use TestInitialize to run code before running each test 
+        // [TestInitialize()]
+        // public void MyTestInitialize() { }
+        //
+        // Use TestCleanup to run code after each test has run
+        // [TestCleanup()]
+        // public void MyTestCleanup() { }
+        //
+        #endregion
 
         #region BasicTest
         /// <summary>
         /// 
         /// </summary>
         [TestMethod]
-		public void BasicTest()
-		{
+        public void BasicTest()
+        {
             var o = GetOptions();
-			var y = new Yelp(o);
-			var results = y.Search("coffee", "seattle, wa");
-			Console.WriteLine(results);
+            var y = new Yelp(o);
+            var results = y.Search("coffee", "seattle, wa");
+            Console.WriteLine(results);
         }
         #endregion
 
@@ -125,7 +125,7 @@ namespace YelpSharpTests
         {
             var o = GetOptions();
             var y = new Yelp(o);
-            
+
             var searchOptions = new SearchOptions();
             searchOptions.GeneralOptions = new GeneralOptions()
             {
@@ -134,7 +134,7 @@ namespace YelpSharpTests
 
             searchOptions.LocationOptions = new LocationOptions()
             {
-                location="seattle"
+                location = "seattle"
             };
 
 
@@ -156,6 +156,86 @@ namespace YelpSharpTests
             Console.WriteLine(results);
         }
         #endregion
+
+        #region LocationWithCoordinates
+        /// <summary>
+        /// check using location options with coordinates
+        /// </summary>
+        [TestMethod]
+        public void LocationWithCoordinates()
+        {
+            var o = GetOptions();
+            var yelp = new Yelp(o);
+           
+            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions() { term = "food" },
+                LocationOptions = new LocationOptions()
+                {
+                    location = "bellevue",
+                    coordinates = new CoordinateOptions()
+                    {
+                        latitude = 37.788022,
+                        longitude = -122.399797
+                    }
+                }
+            };
+
+            var results = yelp.Search(searchOptions);
+
+            Console.WriteLine(results);
+        }
+        #endregion
+
+
+        #region LocationByCoordinates
+        /// <summary>
+        /// check using location options with coordinates
+        /// </summary>
+        [TestMethod]
+        public void LocationByCoordinates()
+        {
+            var o = GetOptions();
+            var yelp = new Yelp(o);
+            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions() { radius_filter = 5 },
+                LocationOptions = new CoordinateOptions()
+                {
+                    latitude = 37.788022,
+                    longitude = -122.399797
+                }
+            };           
+            var results = yelp.Search(searchOptions);
+            Console.WriteLine(results);
+        }
+        #endregion
+
+        #region LocationWithRadius
+        /// <summary>
+        /// check using location options with coordinates
+        /// </summary>
+        [TestMethod]
+        public void LocationWithRadius()
+        {
+            var o = GetOptions();
+            var yelp = new Yelp(o);
+            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions() { term = "food", radius_filter=5 },
+                LocationOptions = new LocationOptions()
+                {
+                    location = "bellevue"
+                }
+            };           
+            var results = yelp.Search(searchOptions);
+
+            Console.WriteLine(results);
+        }
+        #endregion
+
+
+
 
 
         //--------------------------------------------------------------------------

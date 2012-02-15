@@ -50,8 +50,12 @@ namespace YelpSharp.Data.Options
         /// <returns></returns>
         public override Dictionary<string, string> GetParameters()
         {
+            // location is a required field
+            if (String.IsNullOrEmpty(location))
+                throw new InvalidOperationException("To perform a location based search, the location property must contain an area within to search.  For coordinate based searches, use the CoordinateOption class.");
+
             var ps = new Dictionary<string, string>();
-            if (!String.IsNullOrEmpty(location)) ps.Add("location", this.location);
+            ps.Add("location", this.location);
 
             // if coordinates are specified add those to the parameters hash
             if (coordinates != null && coordinates.longitude.HasValue && coordinates.latitude.HasValue)

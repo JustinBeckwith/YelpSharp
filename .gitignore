@@ -41,5 +41,5 @@ TestResults/*
 *.pdb
 [Oo]bj/
 [Bb]in/
-YelpSharpTests/App.config
+YelpSharpTests/App.config.secret
 *.nupkg

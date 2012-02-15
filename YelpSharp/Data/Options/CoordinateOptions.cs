@@ -60,9 +60,20 @@ namespace YelpSharp.Data.Options
         /// <returns></returns>
         public override Dictionary<string, string> GetParameters()
         {
+            // coordinate requires at least a latitude and longitude - others are option
+            if (!latitude.HasValue || !longitude.HasValue)
+            {
+                throw new InvalidOperationException("latitude and longitude are required fields for a coordinate based search");
+            }
+
+            var ll = latitude + "," + longitude;
+            if (accuracy.HasValue) ll += "," + accuracy.Value;
+            if (altitude.HasValue) ll += "," + altitude.Value;
+            if (altitude_accuracy.HasValue) ll += "," + altitude_accuracy.Value;
+
             return new Dictionary<string, string> {
                 { 
-                    "ll", string.Format("{0},{1},{2},{3},{4}", latitude, longitude, accuracy, altitude, altitude_accuracy)
+                    "ll", ll
                 }
             };
 

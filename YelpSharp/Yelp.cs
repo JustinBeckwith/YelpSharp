@@ -8,7 +8,11 @@ using System.IO;
 using System.Web;
 using System.Globalization;
 
-using Twitterizer;
+//using Twitterizer;
+using RestSharp;
+using RestSharp.Authenticators;
+using RestSharp.Authenticators.OAuth;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -134,7 +138,7 @@ namespace YelpSharp
         protected string makeRequest(string area, string id, Dictionary<string, string> parameters)
 		{
 			// build the url with parameters
-			var url = rootUri + area;
+			var url = area;
             if (!String.IsNullOrEmpty(id)) url += "/" + HttpUtility.UrlEncode(id);
 
             if (parameters != null)
@@ -147,35 +151,13 @@ namespace YelpSharp
                     url += p.Key + "=" + HttpUtility.UrlEncode(p.Value);
                 }
             }
-
-			// generate the access token
-			var ot = new OAuthTokens();
-			ot.AccessToken = options.AccessToken;
-			ot.AccessTokenSecret = options.AccessTokenSecret;
-			ot.ConsumerKey = options.ConsumerKey;
-			ot.ConsumerSecret = options.ConsumerSecret;
-
-			// make the request 
-			var formattedUri = String.Format(CultureInfo.InvariantCulture, url, "");
-			var uri = new Uri(formattedUri);
-			var wb = new WebRequestBuilder(uri, HTTPVerb.GET, ot);
-
-            var data = "";
-            try
-            {
-                var wr = wb.ExecuteRequest();
-                var sr = new StreamReader(wr.GetResponseStream());
-                data = sr.ReadToEnd();
-
-                return data;
-            }
-            catch (WebException exception)
-            {
-                HttpWebResponse errorResponse = (HttpWebResponse)exception.Response;
-                var stream = new StreamReader(errorResponse.GetResponseStream());
-                data = stream.ReadToEnd();
-                throw;
-            }   
+            
+            // restsharp FTW!
+            var client = new RestClient(rootUri);
+            client.Authenticator = OAuth1Authenticator.ForProtectedResource(options.ConsumerKey, options.ConsumerSecret, options.AccessToken, options.AccessTokenSecret);
+            var request = new RestRequest(url, Method.GET);
+            var response = client.Execute(request);
+            return response.Content;
         }
         #endregion
 
