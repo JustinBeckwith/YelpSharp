@@ -58,8 +58,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config.live" />
     <None Include="App.config" />
+    <None Include="App.config.secret" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

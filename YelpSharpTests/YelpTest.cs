@@ -234,7 +234,28 @@ namespace YelpSharpTests
         }
         #endregion
 
+        #region MultipleCategories
+        /// <summary>
+        /// perform a search with multiple categories on the general options filter
+        /// </summary>
+        [TestMethod]
+        public void MultipleCategories()
+        {
+            var o = GetOptions();
+            var yelp = new Yelp(o);
+            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions() { category_filter="climbing,bowling" },
+                LocationOptions = new LocationOptions()
+                {
+                    location = "Seattle"
+                }
+            };
+            var results = yelp.Search(searchOptions);
 
+            Console.WriteLine(results);
+        }
+        #endregion
 
 
 
