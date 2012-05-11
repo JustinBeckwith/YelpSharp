@@ -52,6 +52,7 @@
     <Compile Include="Data\Business.cs" />
     <Compile Include="Data\Category.cs" />
     <Compile Include="Data\Coordinate.cs" />
+    <Compile Include="Data\SearchError.cs" />
     <Compile Include="Data\Deal.cs" />
     <Compile Include="Data\DealOptions.cs" />
     <Compile Include="Data\Location.cs" />

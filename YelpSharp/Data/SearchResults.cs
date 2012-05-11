@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace YelpSharp.Data
 {
@@ -24,5 +21,10 @@ namespace YelpSharp.Data
         /// Total number of business results
         /// </summary>
         public int total { get; set; }
+
+        /// <summary>
+        /// Error returned by Yelp Api, null if none
+        /// </summary>
+        public SearchError error { get; set; }
     }
 }
