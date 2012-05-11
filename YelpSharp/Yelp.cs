@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Net;
-using System.IO;
 using System.Web;
-using System.Globalization;
-
-//using Twitterizer;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Authenticators.OAuth;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using YelpSharp.Data;
+using YelpSharp.Data.Options;
 
 
 namespace YelpSharp
@@ -24,8 +14,8 @@ namespace YelpSharp
     /// <summary>
     /// 
     /// </summary>
-	public class Yelp
-	{
+    public class Yelp
+    {
         //--------------------------------------------------------------------------
         //
         //	Variables
@@ -42,7 +32,7 @@ namespace YelpSharp
         /// <summary>
         /// 
         /// </summary>
-		protected Options options { get; set; }
+        protected Options options { get; set; }
 
         #endregion
 
@@ -59,9 +49,9 @@ namespace YelpSharp
         /// </summary>
         /// <param name="options">OAuth options for using the Yelp API</param>
         public Yelp(Options options)
-		{
-			this.options = options;
-		}
+        {
+            this.options = options;
+        }
 
         #endregion
 
@@ -80,24 +70,24 @@ namespace YelpSharp
         /// <param name="location">where to look for it (ex: seattle)</param>
         /// <returns>a strongly typed result</returns>
         public SearchResults Search(string term, string location)
-		{
-			var raw = makeRequest("search", null, new Dictionary<string, string>
-				{
-					{ "term", term },
-					{ "location", location }
-				});
+        {
+            var raw = makeRequest("search", null, new Dictionary<string, string>
+                {
+                    { "term", term },
+                    { "location", location }
+                });
 
             var results = JsonConvert.DeserializeObject<SearchResults>(raw);
             return results;
-            
-		}
+
+        }
 
         /// <summary>
         /// advanced search based on search options object
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public SearchResults Search(YelpSharp.Data.Options.SearchOptions options)
+        public SearchResults Search(SearchOptions options)
         {
             var raw = makeRequest("search", null, options.GetParameters());
             var results = JsonConvert.DeserializeObject<SearchResults>(raw);
@@ -136,22 +126,34 @@ namespace YelpSharp
         /// <param name="parameters">hash array of qs parameters</param>
         /// <returns>plain text json response from the api</returns>
         protected string makeRequest(string area, string id, Dictionary<string, string> parameters)
-		{
-			// build the url with parameters
-			var url = area;
+        {
+            // build the url with parameters
+            var url = area;
             if (!String.IsNullOrEmpty(id)) url += "/" + HttpUtility.UrlEncode(id);
 
             if (parameters != null)
             {
                 var firstp = true;
-                foreach (var p in parameters)
+                string[] keys = parameters.Keys.ToArray();
+                foreach (string k in keys)
                 {
+                    // Rather than failing we could either remove the '+'...
+                    //parameters[k] = parameters[k].Replace("+", "");
+
+                    // or throw if passed
+                    //if (parameters[k].Contains('+'))
+                    //{
+                    //    throw new InvalidOperationException("Yelp does not allow parameter values to contain the '+' character.");
+                    //}
+
                     url += firstp ? "?" : "&";
                     firstp = false;
-                    url += p.Key + "=" + HttpUtility.UrlEncode(p.Value);
+                    //Double URL encode "&" to prevent restsharp from treating the second half of the string as a new parameter
+                    parameters[k] = parameters[k].Replace("&", "%26");
+                    url += k + "=" + HttpUtility.UrlEncode(parameters[k]);
                 }
             }
-            
+
             // restsharp FTW!
             var client = new RestClient(rootUri);
             client.Authenticator = OAuth1Authenticator.ForProtectedResource(options.ConsumerKey, options.ConsumerSecret, options.AccessToken, options.AccessTokenSecret);
