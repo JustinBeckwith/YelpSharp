@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
 using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -62,9 +59,6 @@ namespace YelpSharpTests
 
         #region Constructors
 
-        /// <summary>
-        /// 
-        /// </summary>
         public YelpTest()
         {
             //
@@ -139,6 +133,35 @@ namespace YelpSharpTests
 
 
             var results = y.Search(searchOptions);
+            Assert.IsTrue(results.businesses != null);
+            Assert.IsTrue(results.businesses.Count > 0);
+            Console.WriteLine(results);
+        }
+
+        /// <summary>
+        /// Verify URL escaped characters do not cause search to fail
+        /// </summary>
+        [TestMethod]
+        public void UrlEscapedCharacters()
+        {
+            var o = GetOptions();
+            var y = new Yelp(o);
+
+            var searchOptions = new SearchOptions();
+            searchOptions.GeneralOptions = new GeneralOptions()
+            {
+                term = "coffee $&`:<>[]{}\"#%@/;=?\\^|~', tea"
+            };
+
+            searchOptions.LocationOptions = new LocationOptions()
+            {
+                location = "seattle"
+            };
+
+
+            var results = y.Search(searchOptions);
+            Assert.IsTrue(results.businesses != null);
+            Assert.IsTrue(results.businesses.Count > 0);
             Console.WriteLine(results);
         }
         #endregion
@@ -166,7 +189,7 @@ namespace YelpSharpTests
         {
             var o = GetOptions();
             var yelp = new Yelp(o);
-           
+
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
                 GeneralOptions = new GeneralOptions() { term = "food" },
@@ -187,7 +210,6 @@ namespace YelpSharpTests
         }
         #endregion
 
-
         #region LocationByCoordinates
         /// <summary>
         /// check using location options with coordinates
@@ -205,7 +227,7 @@ namespace YelpSharpTests
                     latitude = 37.788022,
                     longitude = -122.399797
                 }
-            };           
+            };
             var results = yelp.Search(searchOptions);
             Console.WriteLine(results);
         }
@@ -222,12 +244,12 @@ namespace YelpSharpTests
             var yelp = new Yelp(o);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
-                GeneralOptions = new GeneralOptions() { term = "food", radius_filter=5 },
+                GeneralOptions = new GeneralOptions() { term = "food", radius_filter = 5 },
                 LocationOptions = new LocationOptions()
                 {
                     location = "bellevue"
                 }
-            };           
+            };
             var results = yelp.Search(searchOptions);
 
             Console.WriteLine(results);
@@ -245,7 +267,7 @@ namespace YelpSharpTests
             var yelp = new Yelp(o);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
-                GeneralOptions = new GeneralOptions() { category_filter="climbing,bowling" },
+                GeneralOptions = new GeneralOptions() { category_filter = "climbing,bowling" },
                 LocationOptions = new LocationOptions()
                 {
                     location = "Seattle"
@@ -257,7 +279,71 @@ namespace YelpSharpTests
         }
         #endregion
 
+        #region ErrorTests
+        /// <summary>
+        /// Verify '+' character causes API to return error
+        /// </summary>
+        [TestMethod]
+        public void ErrorTest_INVALID_SIGNATURE()
+        {
+            var o = GetOptions();
+            var y = new Yelp(o);
 
+            var searchOptions = new SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions()
+                {
+                    term = "coffee + tea"
+                }
+            };
+
+            var results = y.Search(searchOptions);
+            Assert.IsTrue(results.error != null);
+            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.INVALID_SIGNATURE);
+            Console.WriteLine(results);
+        }
+
+        /// <summary>
+        /// Verify UNAVAILABLE_FOR_LOCATION is returned in error.id
+        /// </summary>
+        [TestMethod]
+        public void ErrorTest_UNAVAILABLE_FOR_LOCATION()
+        {
+            var o = GetOptions();
+            var y = new Yelp(o);
+
+            var searchOptions = new SearchOptions()
+            {
+                LocationOptions = new CoordinateOptions()
+                {
+                    latitude = 1,
+                    longitude = 1
+                }
+            };
+
+            var results = y.Search(searchOptions);
+            Assert.IsTrue(results.error != null);
+            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNAVAILABLE_FOR_LOCATION);
+            Console.WriteLine(results);
+        }
+
+        /// <summary>
+        ///  Verify UNSPECIFIED_LOCATION is returned in error.id
+        /// </summary>
+        [TestMethod]
+        public void ErrorTest_UNSPECIFIED_LOCATION()
+        {
+            var o = GetOptions();
+            var y = new Yelp(o);
+
+            var searchOptions = new SearchOptions();
+
+            var results = y.Search(searchOptions);
+            Assert.IsTrue(results.error != null);
+            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
+            Console.WriteLine(results);
+        }
+        #endregion
 
         //--------------------------------------------------------------------------
         //
