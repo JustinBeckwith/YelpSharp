@@ -45,8 +45,11 @@ namespace YelpSharp.Data
         /// User who wrote the review
         /// </summary>
         public User user { get; set; }
-       
-     
+
+        /// <summary>
+        /// Excerpt of the review
+        /// </summary>
+        public string excerpt { get; set; }
        
     }
 }
