@@ -43,4 +43,6 @@ TestResults/*
 [Bb]in/
 YelpSharpTests/App.config.secret
 *.nupkg
+*.DotSettings.user
 packages/
+_ReSharper.YelpSharp/
