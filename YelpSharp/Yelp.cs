@@ -96,7 +96,6 @@ namespace YelpSharp
 
         #endregion
 
-
         #region GetBusiness
         /// <summary>
         /// search the list of business based on name
