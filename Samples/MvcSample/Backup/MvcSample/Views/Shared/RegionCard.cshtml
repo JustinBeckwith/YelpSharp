@@ -1,0 +1,26 @@
+﻿@model YelpSharp.Data.Region
+
+<fieldset>
+    <legend>Region</legend>
+   
+    <div class="display-label">latitude</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.center.latitude)
+    </div>
+
+    <div class="display-label">longitude</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.center.longitude)
+    </div>
+
+    <div class="display-label">latitude delta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.span.latitude_delta)
+    </div>
+
+    <div class="display-label">longitude delta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.span.longitude_delta)
+    </div>
+
+</fieldset>
