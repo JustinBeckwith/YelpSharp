@@ -106,6 +106,10 @@ namespace YelpSharpTests
             var o = GetOptions();
             var y = new Yelp(o);
             var results = y.Search("coffee", "seattle, wa");
+            if (results.error != null)
+            {
+                Assert.Fail(results.error.text);
+            }
             Console.WriteLine(results);
         }
         #endregion

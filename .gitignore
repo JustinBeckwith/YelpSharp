@@ -41,8 +41,13 @@ TestResults/*
 *.pdb
 [Oo]bj/
 [Bb]in/
-YelpSharpTests/App.config.secret
+
+# YelpSharp Stuff #
+#######################
+YelpSharpTests/App.config
 *.nupkg
 *.DotSettings.user
 packages/
 _ReSharper.YelpSharp/
+Samples/MvcSample/packages
+Samples/MvcSample/MvcSample/App.Config
