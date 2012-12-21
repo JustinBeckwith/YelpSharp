@@ -108,8 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="App.config" />
-    <Content Include="App.config.template" />
+    <None Include="App.config" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -162,7 +161,7 @@
     <Content Include="Views\Shared\ReviewCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\YelpSharp\YelpSharp.csproj">
+    <ProjectReference Include="..\..\YelpSharp\YelpSharp.csproj">
       <Project>{321c2b03-b897-4351-a60b-b5987a67fe6c}</Project>
       <Name>YelpSharp</Name>
     </ProjectReference>
