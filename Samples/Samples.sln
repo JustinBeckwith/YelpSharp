@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharp", "..\YelpSharp\Y
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneSample", "PhoneSample\PhoneSample.csproj", "{EEE47DAE-A5A1-41FF-BFCF-EB625F335202}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharp.WindowsPhone", "..\YelpSharp.WindowsPhone\YelpSharp.WindowsPhone.csproj", "{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,18 @@ Global
 		{EEE47DAE-A5A1-41FF-BFCF-EB625F335202}.Release|x86.ActiveCfg = Release|x86
 		{EEE47DAE-A5A1-41FF-BFCF-EB625F335202}.Release|x86.Build.0 = Release|x86
 		{EEE47DAE-A5A1-41FF-BFCF-EB625F335202}.Release|x86.Deploy.0 = Release|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|ARM.Build.0 = Debug|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|x86.ActiveCfg = Debug|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|x86.Build.0 = Debug|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|ARM.ActiveCfg = Release|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|ARM.Build.0 = Release|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|x86.ActiveCfg = Release|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

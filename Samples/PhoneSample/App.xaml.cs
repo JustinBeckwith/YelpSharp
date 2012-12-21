@@ -13,19 +13,19 @@ namespace PhoneSample
 {
     public partial class App : Application
     {
-        private static MainViewModel viewModel = null;
+        private static SearchResultViewModel viewModel = null;
 
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
-        public static MainViewModel ViewModel
+        public static SearchResultViewModel ViewModel
         {
             get
             {
                 // Delay creation of the view model until necessary
                 if (viewModel == null)
-                    viewModel = new MainViewModel();
+                    viewModel = new SearchResultViewModel();
 
                 return viewModel;
             }

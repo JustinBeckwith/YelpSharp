@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using YelpSharp.Data;
 using YelpSharp.Data.Options;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 
 namespace YelpSharp
@@ -69,17 +69,15 @@ namespace YelpSharp
         /// <param name="term">what to look for (ex: coffee)</param>
         /// <param name="location">where to look for it (ex: seattle)</param>
         /// <returns>a strongly typed result</returns>
-        public SearchResults Search(string term, string location)
+        public Task<SearchResults> Search(string term, string location)
         {
-            var raw = makeRequest("search", null, new Dictionary<string, string>
+            var result = makeRequest<SearchResults>("search", null, new Dictionary<string, string>
                 {
                     { "term", term },
                     { "location", location }
                 });
-
-            var results = JsonConvert.DeserializeObject<SearchResults>(raw);
-            return results;
-
+            
+            return result;
         }
 
         /// <summary>
@@ -87,11 +85,10 @@ namespace YelpSharp
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public SearchResults Search(SearchOptions options)
+        public Task<SearchResults> Search(SearchOptions options)
         {
-            var raw = makeRequest("search", null, options.GetParameters());
-            var results = JsonConvert.DeserializeObject<SearchResults>(raw);
-            return results;
+            var result = makeRequest<SearchResults>("search", null, options.GetParameters());
+            return result;
         }
 
         #endregion
@@ -102,11 +99,10 @@ namespace YelpSharp
         /// </summary>
         /// <param name="name">name of the business you want to get information on</param>
         /// <returns>Business details</returns>
-        public Business GetBusiness(string name)
+        public Task<Business> GetBusiness(string name)
         {
-            var raw = makeRequest("business", name, null);
-            var results = JsonConvert.DeserializeObject<Business>(raw);
-            return results;
+            var result =  makeRequest<Business>("business", name, null);
+            return result;
         }
 
         #endregion
@@ -124,41 +120,34 @@ namespace YelpSharp
         /// </summary>
         /// <param name="parameters">hash array of qs parameters</param>
         /// <returns>plain text json response from the api</returns>
-        protected string makeRequest(string area, string id, Dictionary<string, string> parameters)
+        protected Task<T> makeRequest<T>(string area, string id, Dictionary<string, string> parameters)
         {
             // build the url with parameters
             var url = area;
-            if (!String.IsNullOrEmpty(id)) url += "/" + HttpUtility.UrlEncode(id);
-
-            if (parameters != null)
-            {
-                var firstp = true;
-                string[] keys = parameters.Keys.ToArray();
-                foreach (string k in keys)
-                {
-                    // Rather than failing we could either remove the '+'...
-                    //parameters[k] = parameters[k].Replace("+", "");
-
-                    // or throw if passed
-                    //if (parameters[k].Contains('+'))
-                    //{
-                    //    throw new InvalidOperationException("Yelp does not allow parameter values to contain the '+' character.");
-                    //}
-
-                    url += firstp ? "?" : "&";
-                    firstp = false;
-                    //Double URL encode "&" to prevent restsharp from treating the second half of the string as a new parameter
-                    parameters[k] = parameters[k].Replace("&", "%26");
-                    url += k + "=" + HttpUtility.UrlEncode(parameters[k]);
-                }
-            }
-
+            if (!String.IsNullOrEmpty(id)) url += "/" + Uri.EscapeDataString(id);
+        
             // restsharp FTW!
             var client = new RestClient(rootUri);
             client.Authenticator = OAuth1Authenticator.ForProtectedResource(options.ConsumerKey, options.ConsumerSecret, options.AccessToken, options.AccessTokenSecret);
             var request = new RestRequest(url, Method.GET);
-            var response = client.Execute(request);
-            return response.Content;
+
+            if (parameters != null)
+            {
+                string[] keys = parameters.Keys.ToArray();
+                foreach (string k in keys)
+                {
+                    request.AddParameter(k, parameters[k].Replace("&", "%26"));
+                }
+            }
+
+            var tcs = new TaskCompletionSource<T>();
+            var handle = client.ExecuteAsync(request, response =>
+            {
+                var results = JsonConvert.DeserializeObject<T>(response.Content);
+                tcs.SetResult(results);
+            });
+            
+            return tcs.Task;
         }
         #endregion
 

@@ -105,7 +105,7 @@ namespace YelpSharpTests
         {
             var o = GetOptions();
             var y = new Yelp(o);
-            var results = y.Search("coffee", "seattle, wa");
+            var results = y.Search("coffee", "seattle, wa").Result;
             if (results.error != null)
             {
                 Assert.Fail(results.error.text);
@@ -135,11 +135,9 @@ namespace YelpSharpTests
                 location = "seattle"
             };
 
-
-            var results = y.Search(searchOptions);
+            var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.businesses != null);
-            Assert.IsTrue(results.businesses.Count > 0);
-            Console.WriteLine(results);
+            Assert.IsTrue(results.businesses.Count > 0);            
         }
 
         /// <summary>
@@ -155,6 +153,7 @@ namespace YelpSharpTests
             searchOptions.GeneralOptions = new GeneralOptions()
             {
                 term = "coffee $&`:<>[]{}\"#%@/;=?\\^|~', tea"
+                //term = "coffee $`:<>[]{}\"#%@/;=?\\^|~', tea"
             };
 
             searchOptions.LocationOptions = new LocationOptions()
@@ -163,7 +162,7 @@ namespace YelpSharpTests
             };
 
 
-            var results = y.Search(searchOptions);
+            var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.businesses != null);
             Assert.IsTrue(results.businesses.Count > 0);
             Console.WriteLine(results);
@@ -179,8 +178,8 @@ namespace YelpSharpTests
         {
             var o = GetOptions();
             var y = new Yelp(o);
-            var results = y.GetBusiness("yelp-san-francisco");
-            Console.WriteLine(results);
+            var results = y.GetBusiness("yelp-san-francisco").Result;
+            Assert.IsTrue(results != null);
         }
         #endregion
 
@@ -208,9 +207,8 @@ namespace YelpSharpTests
                 }
             };
 
-            var results = yelp.Search(searchOptions);
-
-            Console.WriteLine(results);
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses.Count > 0);
         }
         #endregion
 
@@ -232,8 +230,8 @@ namespace YelpSharpTests
                     longitude = -122.399797
                 }
             };
-            var results = yelp.Search(searchOptions);
-            Console.WriteLine(results);
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses.Count > 0);
         }
         #endregion
 
@@ -254,9 +252,8 @@ namespace YelpSharpTests
                     location = "bellevue"
                 }
             };
-            var results = yelp.Search(searchOptions);
-
-            Console.WriteLine(results);
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses.Count > 0);          
         }
         #endregion
 
@@ -277,35 +274,12 @@ namespace YelpSharpTests
                     location = "Seattle"
                 }
             };
-            var results = yelp.Search(searchOptions);
-
-            Console.WriteLine(results);
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses.Count > 0);
         }
         #endregion
 
-        #region ErrorTests
-        /// <summary>
-        /// Verify '+' character causes API to return error
-        /// </summary>
-        [TestMethod]
-        public void ErrorTest_INVALID_SIGNATURE()
-        {
-            var o = GetOptions();
-            var y = new Yelp(o);
-
-            var searchOptions = new SearchOptions()
-            {
-                GeneralOptions = new GeneralOptions()
-                {
-                    term = "coffee + tea"
-                }
-            };
-
-            var results = y.Search(searchOptions);
-            Assert.IsTrue(results.error != null);
-            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.INVALID_SIGNATURE);
-            Console.WriteLine(results);
-        }
+        #region ErrorTests       
 
         /// <summary>
         /// Verify UNAVAILABLE_FOR_LOCATION is returned in error.id
@@ -325,7 +299,7 @@ namespace YelpSharpTests
                 }
             };
 
-            var results = y.Search(searchOptions);
+            var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.error != null);
             Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNAVAILABLE_FOR_LOCATION);
             Console.WriteLine(results);
@@ -342,7 +316,7 @@ namespace YelpSharpTests
 
             var searchOptions = new SearchOptions();
 
-            var results = y.Search(searchOptions);
+            var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.error != null);
             Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
             Console.WriteLine(results);

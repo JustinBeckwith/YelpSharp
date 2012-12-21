@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharp", "YelpSharp\YelpSharp.csproj", "{321C2B03-B897-4351-A60B-B5987A67FE6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharpTests", "YelpSharpTests\YelpSharpTests.csproj", "{6B9A6393-811A-404B-BC9A-189000563007}"
@@ -18,23 +18,49 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D40FF6
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharp.WindowsPhone", "YelpSharp.WindowsPhone\YelpSharp.WindowsPhone.csproj", "{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = YelpSharp.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{321C2B03-B897-4351-A60B-B5987A67FE6C}.Release|x86.ActiveCfg = Release|Any CPU
 		{6B9A6393-811A-404B-BC9A-189000563007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B9A6393-811A-404B-BC9A-189000563007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B9A6393-811A-404B-BC9A-189000563007}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6B9A6393-811A-404B-BC9A-189000563007}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{6B9A6393-811A-404B-BC9A-189000563007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B9A6393-811A-404B-BC9A-189000563007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B9A6393-811A-404B-BC9A-189000563007}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6B9A6393-811A-404B-BC9A-189000563007}.Release|x86.ActiveCfg = Release|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|ARM.Build.0 = Debug|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|x86.ActiveCfg = Debug|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Debug|x86.Build.0 = Debug|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|ARM.ActiveCfg = Release|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|ARM.Build.0 = Release|ARM
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|x86.ActiveCfg = Release|x86
+		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 
 namespace PhoneSample.ViewModels
 {
-    public class ItemViewModel : INotifyPropertyChanged
+    public class BusinessViewModel : INotifyPropertyChanged
     {
         private string _id;
         /// <summary>
