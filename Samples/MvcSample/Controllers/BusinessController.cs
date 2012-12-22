@@ -15,8 +15,8 @@ namespace MvcSample.Controllers
 
         public ActionResult Details(string id)
         {
-            Yelp y = new Yelp(MvcApplication.Options);
-            var result = y.GetBusiness(id);
+            Yelp y = new Yelp(Config.Options);
+            var result = y.GetBusiness(id).Result;
             return View(result);
         }
 

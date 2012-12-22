@@ -44,10 +44,11 @@ TestResults/*
 
 # YelpSharp Stuff #
 #######################
-YelpSharpTests/App.config
 *.nupkg
 *.DotSettings.user
 packages/
 _ReSharper.YelpSharp/
 Samples/packages
-Samples/MvcSample/App.Config
+Samples/MvcSample/Config.cs
+Samples/PhoneSample/Config.cs
+YelpSharpTests/Config.cs

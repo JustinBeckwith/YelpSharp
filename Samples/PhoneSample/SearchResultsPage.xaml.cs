@@ -9,13 +9,14 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using PhoneSample.Resources;
 using PhoneSample.ViewModels;
+using YelpSharp.Data;
 
 namespace PhoneSample
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class SearchResultsPage : PhoneApplicationPage
     {
         // Constructor
-        public MainPage()
+        public SearchResultsPage(SearchResults results)
         {
             InitializeComponent();
 
@@ -29,10 +30,7 @@ namespace PhoneSample
         // Load data for the ViewModel Items
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
+            
         }
 
         // Handle selection changed on LongListSelector

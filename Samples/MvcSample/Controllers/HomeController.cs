@@ -45,8 +45,8 @@ namespace MvcSample.Controllers
         /// <returns></returns>
         public ActionResult Results(SimpleSearchModel model)
         {
-            Yelp yelp = new Yelp(MvcApplication.Options);
-            var results = yelp.Search(model.Term, model.Location);
+            Yelp yelp = new Yelp(Config.Options);
+            var results = yelp.Search(model.Term, model.Location).Result;
             return View(results);
         }
 

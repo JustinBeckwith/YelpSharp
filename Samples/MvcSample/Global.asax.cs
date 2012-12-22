@@ -38,32 +38,6 @@ namespace MvcSample
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-        }
-
-        //--------------------------------------------------------------------------
-        //
-        //	Internal Methods
-        //
-        //--------------------------------------------------------------------------
-
-        #region GetOptions
-        /// <summary>
-        /// return the oauth options in this case from app.config
-        /// </summary>
-        /// <returns></returns>
-        public static Options Options
-        {
-            get
-            {
-                return new Options()
-                {
-                    AccessToken = ConfigurationManager.AppSettings["AccessToken"],
-                    AccessTokenSecret = ConfigurationManager.AppSettings["AccessTokenSecret"],
-                    ConsumerKey = ConfigurationManager.AppSettings["ConsumerKey"],
-                    ConsumerSecret = ConfigurationManager.AppSettings["ConsumerSecret"]
-                };
-            }
-        }
-        #endregion
+        }       
     }
 }

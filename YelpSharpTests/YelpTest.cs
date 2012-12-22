@@ -103,8 +103,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void BasicTest()
         {
-            var o = GetOptions();
-            var y = new Yelp(o);
+            var y = new Yelp(Config.Options);
             var results = y.Search("coffee", "seattle, wa").Result;
             if (results.error != null)
             {
@@ -121,8 +120,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void AdvancedTest()
         {
-            var o = GetOptions();
-            var y = new Yelp(o);
+            var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions();
             searchOptions.GeneralOptions = new GeneralOptions()
@@ -146,8 +144,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void UrlEscapedCharacters()
         {
-            var o = GetOptions();
-            var y = new Yelp(o);
+            var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions();
             searchOptions.GeneralOptions = new GeneralOptions()
@@ -176,8 +173,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void BusinessTest()
         {
-            var o = GetOptions();
-            var y = new Yelp(o);
+            var y = new Yelp(Config.Options);
             var results = y.GetBusiness("yelp-san-francisco").Result;
             Assert.IsTrue(results != null);
         }
@@ -190,8 +186,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void LocationWithCoordinates()
         {
-            var o = GetOptions();
-            var yelp = new Yelp(o);
+            var yelp = new Yelp(Config.Options);
 
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
@@ -219,8 +214,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void LocationByCoordinates()
         {
-            var o = GetOptions();
-            var yelp = new Yelp(o);
+            var yelp = new Yelp(Config.Options);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
                 GeneralOptions = new GeneralOptions() { radius_filter = 5 },
@@ -242,8 +236,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void LocationWithRadius()
         {
-            var o = GetOptions();
-            var yelp = new Yelp(o);
+            var yelp = new Yelp(Config.Options);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
                 GeneralOptions = new GeneralOptions() { term = "food", radius_filter = 5 },
@@ -264,8 +257,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void MultipleCategories()
         {
-            var o = GetOptions();
-            var yelp = new Yelp(o);
+            var yelp = new Yelp(Config.Options);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
                 GeneralOptions = new GeneralOptions() { category_filter = "climbing,bowling" },
@@ -287,8 +279,7 @@ namespace YelpSharpTests
         [TestMethod]
         public void ErrorTest_UNAVAILABLE_FOR_LOCATION()
         {
-            var o = GetOptions();
-            var y = new Yelp(o);
+            var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions()
             {
@@ -310,9 +301,8 @@ namespace YelpSharpTests
         /// </summary>
         [TestMethod]
         public void ErrorTest_UNSPECIFIED_LOCATION()
-        {
-            var o = GetOptions();
-            var y = new Yelp(o);
+        {            
+            var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions();
 
@@ -321,29 +311,6 @@ namespace YelpSharpTests
             Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
             Console.WriteLine(results);
         }
-        #endregion
-
-        //--------------------------------------------------------------------------
-        //
-        //	Internal Methods
-        //
-        //--------------------------------------------------------------------------
-
-        #region GetOptions
-        /// <summary>
-        /// return the oauth options in this case from app.config
-        /// </summary>
-        /// <returns></returns>
-        protected Options GetOptions()
-        {
-            return new Options()
-            {
-                AccessToken = ConfigurationManager.AppSettings["AccessToken"],
-                AccessTokenSecret = ConfigurationManager.AppSettings["AccessTokenSecret"],
-                ConsumerKey = ConfigurationManager.AppSettings["ConsumerKey"],
-                ConsumerSecret = ConfigurationManager.AppSettings["ConsumerSecret"]
-            };
-        }
-        #endregion
+        #endregion       
     }
 }
