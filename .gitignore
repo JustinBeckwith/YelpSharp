@@ -49,6 +49,3 @@ TestResults/*
 packages/
 _ReSharper.YelpSharp/
 Samples/packages
-Samples/MvcSample/Config.cs
-Samples/PhoneSample/Config.cs
-YelpSharpTests/Config.cs
