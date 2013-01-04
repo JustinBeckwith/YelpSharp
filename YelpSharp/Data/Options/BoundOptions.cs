@@ -59,7 +59,7 @@ namespace YelpSharp.Data.Options
         {
             return new Dictionary<string,string> {
                 { 
-                    "bounds", string.Format("{0},{1},{2},{3}", sw_latitude, sw_longitude, ne_latitude, ne_longitude)
+                    "bounds", string.Format("{0},{1}|{2},{3}", sw_latitude, sw_longitude, ne_latitude, ne_longitude)
                 }
             };
 
