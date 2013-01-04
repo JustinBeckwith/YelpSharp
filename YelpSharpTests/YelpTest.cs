@@ -217,6 +217,29 @@ namespace YelpSharpTests
             var yelp = new Yelp(Config.Options);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
+                LocationOptions = new BoundOptions()
+                {
+                    sw_latitude = 37.9,
+                    sw_longitude = -122.5,
+                    ne_latitude = 37.788022,
+                    ne_longitude = -122.399797
+                }
+            };
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses.Count > 0);
+        }
+        #endregion
+
+        #region LocationByBounds
+        /// <summary>
+        /// check using bounds location options
+        /// </summary>
+        [TestMethod]
+        public void LocationByBounds()
+        {
+            var yelp = new Yelp(Config.Options);
+            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            {
                 GeneralOptions = new GeneralOptions() { radius_filter = 5 },
                 LocationOptions = new CoordinateOptions()
                 {
