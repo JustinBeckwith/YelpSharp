@@ -1,0 +1,21 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>YelpSharp</id>
+    <version>1.1.0.0</version>
+    <title>YelpSharp</title>
+    <authors>Justin Beckwith</authors>
+    <owners>Justin Beckwith</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/JustinBeckwith/YelpSharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>YelpSharp is a .NET wrapper for the Yelp.com REST API</description>
+    <releaseNotes>Bug fixes, and support for Windows Phone 8.  For more info, check out the code at https://github.com/JustinBeckwith/YelpSharp</releaseNotes>    
+    <tags>REST API Social yelp location</tags>
+    <iconUrl>http://justinbeckwith.github.com/YelpSharp/icon.png</iconUrl>
+    <dependencies>
+      <dependency id="RestSharp" version="104.1" />
+      <dependency id="Newtonsoft.Json" version="4.5.11" />
+    </dependencies>
+  </metadata>
+</package>

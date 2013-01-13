@@ -20,6 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D40FF6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharp.WindowsPhone", "YelpSharp.WindowsPhone\YelpSharp.WindowsPhone.csproj", "{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{089CC7A5-E357-4B55-9E9A-7778A22835F2}"
+	ProjectSection(SolutionItems) = preProject
+		YelpSharp.nuspec = YelpSharp.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = YelpSharp.vsmdi

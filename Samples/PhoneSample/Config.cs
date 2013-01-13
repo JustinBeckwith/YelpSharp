@@ -27,10 +27,10 @@ namespace PhoneSample
                     // doing the env dance, if you so choose
                     _options = new Options()
                     {
-                        AccessToken = "",
-                        AccessTokenSecret = "",
-                        ConsumerKey = "",
-                        ConsumerSecret = ""
+                        AccessToken = "JH5ddINc6nHvEy02AhdrEnOhAd8ntm5r",
+                        AccessTokenSecret = "rVUKIkmsHeuKD_UtzUCIKN-ZPtQ",
+                        ConsumerKey = "C7BRueEwrCP7tMesD-n05w",
+                        ConsumerSecret = "d07BDao02TWAISm2OAYmEgoXt90"
                     };
 
                     if (String.IsNullOrEmpty(_options.AccessToken) ||
