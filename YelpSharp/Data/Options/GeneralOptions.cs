@@ -72,8 +72,8 @@ namespace YelpSharp.Data.Options
             var ps = new Dictionary<string, string>();
             if (!String.IsNullOrEmpty(term)) ps.Add("term", this.term);
             if (limit.HasValue) ps.Add("limit", this.limit.Value.ToString());
-            if (limit.HasValue) ps.Add("offset", this.offset.Value.ToString());
-            if (limit.HasValue) ps.Add("sort", this.sort.Value.ToString());
+            if (offset.HasValue) ps.Add("offset", this.offset.Value.ToString());
+            if (sort.HasValue) ps.Add("sort", this.sort.Value.ToString());
             if (!String.IsNullOrEmpty(category_filter)) ps.Add("category_filter", this.category_filter);
             if (radius_filter.HasValue) ps.Add("radius_filter", this.radius_filter.Value.ToString());
             if (deals_filter.HasValue) ps.Add("deals_filter", this.deals_filter.Value.ToString());            
