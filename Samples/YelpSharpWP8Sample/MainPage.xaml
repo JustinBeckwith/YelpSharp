@@ -1,0 +1,61 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="YelpSharpWP8Sample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:YelpSharpWP8Sample"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <local:RadiusConvertor x:Key="RadiusCustomConverter" />
+    </phone:PhoneApplicationPage.Resources>
+    
+   <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="Yelp Sharp WP8 Sample" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Search" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock Text="Term"/>
+            <TextBox Text="{Binding SearchOptions.GeneralOptions.term, Mode=TwoWay}"/>
+            <TextBlock>
+                <TextBlock.Inlines>
+                    <Run Text="Category" />
+                    <Run Text="  (should be yelp supported category e.g. tattoo)" FontSize="16" />
+                </TextBlock.Inlines>
+            </TextBlock>
+            <TextBox Text="{Binding SearchOptions.GeneralOptions.category_filter, Mode=TwoWay}"/>
+            <TextBlock>
+                <TextBlock.Inlines>
+                    <Run Text="Radius" />
+                    <Run Text="  (enter miles between 1 - 25)" FontSize="16" />
+                </TextBlock.Inlines>
+            </TextBlock>
+            <TextBox Text="{Binding Path=SearchOptions.GeneralOptions.radius_filter, Converter={StaticResource RadiusCustomConverter}, Mode=TwoWay}" MaxLength="2">
+                <TextBox.InputScope>
+                    <InputScope>
+                        <InputScopeName NameValue="Number"/>
+                    </InputScope>
+                </TextBox.InputScope>
+            </TextBox>
+            <Button Content="Search" Tap="Search_Tap"/>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

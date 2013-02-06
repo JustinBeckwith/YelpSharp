@@ -20,7 +20,7 @@ namespace PhoneSample
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        {            
+        {
             var yelp = new Yelp(Config.Options);
             var task = yelp.Search(txtSearch.Text, txtLocation.Text);
             task.ContinueWith((results) =>
@@ -28,7 +28,7 @@ namespace PhoneSample
                 App.ViewModel = new ViewModels.SearchResultViewModel(results.Result);
                 NavigationService.Navigate(new Uri("/SearchResultsPage.xaml"));
             });
-            
+
         }
 
 
