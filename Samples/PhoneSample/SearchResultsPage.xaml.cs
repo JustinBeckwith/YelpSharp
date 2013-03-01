@@ -30,7 +30,7 @@ namespace PhoneSample
         // Load data for the ViewModel Items
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+
         }
 
         // Handle selection changed on LongListSelector

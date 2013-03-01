@@ -1,0 +1,16 @@
+﻿<vm:ListViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:YelpSharpWP8Sample.ViewModels"    
+    xmlns:yelp="clr-namespace:YelpSharp.Data;assembly=YelpSharp.WindowsPhone">
+
+    <vm:ListViewModel.Businesses>
+        <yelp:Business name="business one" distance="5.0"/>
+        <yelp:Business name="business two" distance="7.0"/>
+        <yelp:Business name="business three" distance="2.0"/>
+        <yelp:Business name="business four" distance="24.0"/>
+        <yelp:Business name="business five" distance="9.0"/>
+        <yelp:Business name="business six" distance="13.0"/>
+    </vm:ListViewModel.Businesses>
+
+</vm:ListViewModel>
