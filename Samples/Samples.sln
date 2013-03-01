@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneSample", "PhoneSample\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharp.WindowsPhone", "..\YelpSharp.WindowsPhone\YelpSharp.WindowsPhone.csproj", "{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YelpSharpWP8Sample", "YelpSharpWP8Sample\YelpSharpWP8Sample.csproj", "{4D0BEE69-0753-4246-B19F-65F7CA63688F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,24 @@ Global
 		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|ARM.Build.0 = Release|ARM
 		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|x86.ActiveCfg = Release|x86
 		{D509CF1D-A9DE-41FF-B6DB-D77A664ABD18}.Release|x86.Build.0 = Release|x86
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|ARM.Build.0 = Debug|ARM
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|ARM.Deploy.0 = Debug|ARM
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|x86.ActiveCfg = Debug|x86
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|x86.Build.0 = Debug|x86
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Debug|x86.Deploy.0 = Debug|x86
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|ARM.ActiveCfg = Release|ARM
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|ARM.Build.0 = Release|ARM
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|ARM.Deploy.0 = Release|ARM
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|x86.ActiveCfg = Release|x86
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|x86.Build.0 = Release|x86
+		{4D0BEE69-0753-4246-B19F-65F7CA63688F}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
