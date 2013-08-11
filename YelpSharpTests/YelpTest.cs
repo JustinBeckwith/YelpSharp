@@ -294,8 +294,27 @@ namespace YelpSharpTests
         }
         #endregion
 
-        #region ErrorTests       
+        #region VerifyLocationInResult
+        /// <summary>
+        /// search for a business, and ensure the lat & long are available
+        /// </summary>
+        [TestMethod]
+        public void VerifyLocationInResult()
+        {
+            var y = new Yelp(Config.Options);
+            var results = y.Search("coffee", "seattle, wa").Result;
+            if (results.error != null)
+            {
+                Assert.Fail(results.error.text);
+            }
+            var bus = results.businesses[0];
+            if (bus.location.coordinate == null)
+                Assert.Fail("No coordinate found on location for business");
+          
+        }
+        #endregion
 
+        #region ErrorTests
         /// <summary>
         /// Verify UNAVAILABLE_FOR_LOCATION is returned in error.id
         /// </summary>

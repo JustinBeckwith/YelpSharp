@@ -27,10 +27,10 @@ namespace YelpSharpTests
                     // doing the env dance, if you so choose
                     _options = new Options()
                     {
-                        AccessToken = Environment.GetEnvironmentVariable("YELP_ACCESS_TOKEN", EnvironmentVariableTarget.Machine),
-                        AccessTokenSecret = Environment.GetEnvironmentVariable("YELP_ACCESS_TOKEN_SECRET", EnvironmentVariableTarget.Machine),
-                        ConsumerKey = Environment.GetEnvironmentVariable("YELP_CONSUMER_KEY", EnvironmentVariableTarget.Machine),
-                        ConsumerSecret = Environment.GetEnvironmentVariable("YELP_CONSUMER_SECRET", EnvironmentVariableTarget.Machine)
+                        AccessToken = Environment.GetEnvironmentVariable("YELP_ACCESS_TOKEN", EnvironmentVariableTarget.User),
+                        AccessTokenSecret = Environment.GetEnvironmentVariable("YELP_ACCESS_TOKEN_SECRET", EnvironmentVariableTarget.User),
+                        ConsumerKey = Environment.GetEnvironmentVariable("YELP_CONSUMER_KEY", EnvironmentVariableTarget.User),
+                        ConsumerSecret = Environment.GetEnvironmentVariable("YELP_CONSUMER_SECRET", EnvironmentVariableTarget.User)
                     };
 
                     if (String.IsNullOrEmpty(_options.AccessToken) ||
