@@ -41,7 +41,7 @@ var task = y.Search("coffee", "seattle, wa").ContinueWith((searchResults) =>
 });
 ```
 
-There are a lot of other ways to search.  For more info, the best place to look is the [unit tests](https://github.com/JustinBeckwith/YelpSharp/blob/master/YelpSharpTests/YelpTest.cs).
+There are a lot of other ways to search.  For more info, the best place to look is the [unit tests](https://github.com/JustinBeckwith/YelpSharp/blob/master/YelpSharpTests/).
 
 
 ## Building the Source
