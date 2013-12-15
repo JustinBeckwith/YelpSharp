@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="ErrorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YelpTest.cs" />
+    <Compile Include="LocationTests.cs" />
+    <Compile Include="GeneralTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YelpSharp\YelpSharp.csproj">

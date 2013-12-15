@@ -16,8 +16,6 @@ namespace YelpSharp.Data.Options
         //
         //--------------------------------------------------------------------------
 
-        #region Properties
-
         /// <summary>
         /// Search term (e.g. "food", "restaurants"). If term isn't included we search everything.
         /// </summary>
@@ -53,15 +51,11 @@ namespace YelpSharp.Data.Options
         /// </summary>
         public bool? deals_filter { get; set; }
 
-        #endregion
-
         //--------------------------------------------------------------------------
         //
         //	Methods
         //
         //--------------------------------------------------------------------------
-
-        #region GetParameters
 
         /// <summary>
         /// format the properties for the querystring 
@@ -79,7 +73,5 @@ namespace YelpSharp.Data.Options
             if (deals_filter.HasValue) ps.Add("deals_filter", this.deals_filter.Value.ToString());            
             return ps;
         }
-
-        #endregion
     }
 }

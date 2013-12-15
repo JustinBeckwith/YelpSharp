@@ -17,8 +17,6 @@ namespace YelpSharp.Data.Options
         //
         //--------------------------------------------------------------------------
 
-        #region Properties
-
         /// <summary>
         /// Latitude of geo-point to search near (required)
         /// </summary>
@@ -44,15 +42,11 @@ namespace YelpSharp.Data.Options
         /// </summary>
         public double? altitude_accuracy { get; set; }
 
-        #endregion
-
         //--------------------------------------------------------------------------
         //
         //	Methods
         //
         //--------------------------------------------------------------------------
-
-        #region GetParameters
 
         /// <summary>
         /// format the properties for the querystring - bounds is a single querystring parameter
@@ -78,7 +72,5 @@ namespace YelpSharp.Data.Options
             };
 
         }
-
-        #endregion
     }
 }

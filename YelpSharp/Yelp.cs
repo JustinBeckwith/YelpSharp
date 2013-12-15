@@ -22,27 +22,21 @@ namespace YelpSharp
         //
         //--------------------------------------------------------------------------
 
-        #region Properties
-
         /// <summary>
-        /// 
+        /// Root url for the Yelp REST API.
         /// </summary>
         protected const string rootUri = "http://api.yelp.com/v2/";
 
         /// <summary>
-        /// 
+        /// Authentication options for the connection.
         /// </summary>
         protected Options options { get; set; }
-
-        #endregion
 
         //--------------------------------------------------------------------------
         //
         //	Constructors
         //
         //--------------------------------------------------------------------------
-
-        #region Constructors
 
         /// <summary>
         /// Driver for the Yelp API
@@ -53,15 +47,12 @@ namespace YelpSharp
             this.options = options;
         }
 
-        #endregion
 
         //--------------------------------------------------------------------------
         //
         //	Public Methods
         //
         //--------------------------------------------------------------------------
-
-        #region Search
 
         /// <summary>
         /// Simple search method to look for a term in a given plain text address
@@ -91,9 +82,6 @@ namespace YelpSharp
             return result;
         }
 
-        #endregion
-
-        #region GetBusiness
         /// <summary>
         /// search the list of business based on name
         /// </summary>
@@ -105,8 +93,6 @@ namespace YelpSharp
             return result;
         }
 
-        #endregion
-
 
         //--------------------------------------------------------------------------
         //
@@ -114,7 +100,6 @@ namespace YelpSharp
         //
         //--------------------------------------------------------------------------
 
-        #region makeRequest
         /// <summary>
         /// contains all of the oauth magic, makes the http request and returns raw json
         /// </summary>
@@ -149,8 +134,6 @@ namespace YelpSharp
             
             return tcs.Task;
         }
-        #endregion
-
 
     }
 }
