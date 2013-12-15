@@ -179,6 +179,38 @@ namespace YelpSharpTests
             var results = yelp.Search(searchOptions).Result;
             Assert.IsTrue(results.businesses.Count > 0);
         }
+
+        /// <summary>
+        /// Verify the limit parameter works as expected.
+        /// </summary>
+        [TestMethod]
+        public void LimitTest()
+        {
+            var y = new Yelp(Config.Options);
+            var searchOptions = new SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions()
+                {
+                    term = "coffee",
+                    limit = 15,
+                },
+                LocationOptions = new LocationOptions()
+                {
+                    location = "seattle, wa"
+                }
+            };
+            var results = y.Search(searchOptions).Result;
+            if (results.error != null)
+            {
+                Assert.Fail(results.error.text);
+            }
+            if (results.businesses.Count != 15)
+            {
+                Assert.Fail(string.Format("Limit test returned {0} results instead of 15", results.businesses.Count));
+            }
+
+            Console.WriteLine(results);
+        }
                
     }
 }

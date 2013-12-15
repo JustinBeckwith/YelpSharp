@@ -165,7 +165,6 @@ namespace YelpSharpTests
             var yelp = new Yelp(Config.Options);
             var searchOptions = new YelpSharp.Data.Options.SearchOptions()
             {
-                //GeneralOptions = new GeneralOptions() { radius_filter = 5 },
                 LocationOptions = new CoordinateOptions()
                 {
                     latitude = 37.788022,
