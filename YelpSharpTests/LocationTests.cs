@@ -176,6 +176,28 @@ namespace YelpSharpTests
         }
 
         /// <summary>
+        /// Verify searching by coordinates with a radius filter.
+        /// </summary>
+        [TestMethod]
+        public void VerifyCoordinatesWithRadius()
+        {
+            var yelp = new Yelp(Config.Options);
+            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            {
+                GeneralOptions = new GeneralOptions() {
+                    radius_filter = 3000
+                },
+                LocationOptions = new CoordinateOptions()
+                {
+                    latitude = 47.603525,
+                    longitude = -122.329580
+                }
+            };
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses.Count > 0);
+        }
+
+        /// <summary>
         /// check using location options with coordinates
         /// </summary>
         [TestMethod]
