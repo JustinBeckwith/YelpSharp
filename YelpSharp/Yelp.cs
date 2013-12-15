@@ -121,7 +121,7 @@ namespace YelpSharp
                 string[] keys = parameters.Keys.ToArray();
                 foreach (string k in keys)
                 {
-                    request.AddParameter(k, parameters[k].Replace("&", "%26"));
+                    request.AddParameter(k, parameters[k]);
                 }
             }
 

@@ -149,6 +149,30 @@ namespace YelpSharpTests
             Assert.IsTrue(results.businesses.Count > 0);
             Console.WriteLine(results);
         }
+
+        /// <summary>
+        /// Verify URL escaped characters do not cause search to fail
+        /// </summary>
+        [TestMethod]
+        public void VerifyTermWithEscapedCharacter()
+        {
+            var y = new Yelp(Config.Options);
+            var searchOptions = new SearchOptions
+            {
+                GeneralOptions = new GeneralOptions
+                {
+                    term = "Frimark Keller & Associates"
+                },
+                LocationOptions = new LocationOptions
+                {
+                    location = "60173"
+                }
+            };
+
+            var results = y.Search(searchOptions).Result;
+            Assert.IsTrue(results.businesses != null);
+            Assert.IsTrue(results.businesses.Count > 0);           
+        }
         
         /// <summary>
         /// test loading a business explicitely by name
