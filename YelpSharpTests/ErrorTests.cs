@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Configuration;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using YelpSharp;
+using YelpSharp.Data;
 using YelpSharp.Data.Options;
 
 namespace YelpSharpTests
@@ -121,7 +123,15 @@ namespace YelpSharpTests
             Assert.IsTrue(results.error != null);
             Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
             Console.WriteLine(results);
-        }    
+        }
 
+        [TestMethod]
+        public void ErrorTest_UNAVAILABLE_BUSINESS()
+        {
+            Yelp y = new Yelp(Config.Options);
+            Business business = y.GetBusiness("foo-bar").Result;
+
+            Assert.IsNull(business);
+        }
     }
 }
