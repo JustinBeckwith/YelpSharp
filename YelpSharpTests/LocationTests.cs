@@ -249,6 +249,5 @@ namespace YelpSharpTests
             Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
             Console.WriteLine(results);
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using RestSharp;
 using RestSharp.Authenticators;
 using YelpSharp.Data;
@@ -128,8 +129,22 @@ namespace YelpSharp
             var tcs = new TaskCompletionSource<T>();
             var handle = client.ExecuteAsync(request, response =>
             {
-                var results = JsonConvert.DeserializeObject<T>(response.Content);
-                tcs.SetResult(results);
+                if(response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    tcs.SetResult(default(T));
+                }
+                else
+                {
+                    try
+                    {
+                        T results = JsonConvert.DeserializeObject<T>(response.Content);
+                        tcs.SetResult(results);
+                    }
+                    catch (Exception ex)
+                    {
+                        tcs.SetException(ex);
+                    }
+                }
             });
             
             return tcs.Task;

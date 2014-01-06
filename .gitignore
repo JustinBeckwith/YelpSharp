@@ -49,3 +49,4 @@ TestResults/*
 packages/
 _ReSharper.YelpSharp/
 Samples/packages
+*.user
