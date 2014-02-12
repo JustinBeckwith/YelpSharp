@@ -184,7 +184,28 @@ namespace YelpSharpTests
             var results = y.GetBusiness("yelp-san-francisco").Result;
             Assert.IsTrue(results != null);
         }
-        
+
+		/// <summary>
+		/// test that reviews are returned
+		/// </summary>
+		[TestMethod]
+		public void BusinessReviewTest()
+		{
+			var y = new Yelp(Config.Options);
+			var results = y.GetBusiness("yelp-san-francisco").Result;
+			Assert.IsTrue(results != null);
+
+			Assert.IsNotNull(results.reviews);
+			Assert.AreNotEqual(0, results.review_count);
+
+			Assert.AreNotEqual(0, results.reviews.Count);
+
+			var firstReview = results.reviews[0];
+			Assert.IsNotNull(firstReview.rating_image_url);
+			Assert.IsNotNull(firstReview.rating_image_small_url);
+			Assert.IsNotNull(firstReview.rating_image_large_url);
+		}
+
         /// <summary>
         /// perform a search with multiple categories on the general options filter
         /// </summary>
