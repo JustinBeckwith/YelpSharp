@@ -68,7 +68,7 @@ namespace YelpSharp
                     { "term", term },
                     { "location", location }
                 });
-            
+
             return result;
         }
 
@@ -90,10 +90,24 @@ namespace YelpSharp
         /// <returns>Business details</returns>
         public Task<Business> GetBusiness(string name)
         {
-            var result =  makeRequest<Business>("business", name, null);
+            var result = makeRequest<Business>("business", name, null);
             return result;
         }
 
+        /// <summary>
+        /// search businesses based on phone number
+        /// </summary>
+        /// <param name="phone">phone number of the business you want to get information on</param>
+        /// <returns>List of matching businesses</returns>
+        public Task<SearchResults> SearchByPhone(string phone)
+        {
+            var parameters = new Dictionary<string, string>()
+            { 
+                {"phone", phone} 
+            };
+            var result = makeRequest<SearchResults>("phone_search", null, parameters);
+            return result;
+        }
 
         //--------------------------------------------------------------------------
         //
@@ -111,7 +125,7 @@ namespace YelpSharp
             // build the url with parameters
             var url = area;
             if (!String.IsNullOrEmpty(id)) url += "/" + Uri.EscapeDataString(id);
-        
+
             // restsharp FTW!
             var client = new RestClient(rootUri);
             client.Authenticator = OAuth1Authenticator.ForProtectedResource(options.ConsumerKey, options.ConsumerSecret, options.AccessToken, options.AccessTokenSecret);
@@ -129,7 +143,7 @@ namespace YelpSharp
             var tcs = new TaskCompletionSource<T>();
             var handle = client.ExecuteAsync(request, response =>
             {
-                if(response.StatusCode == HttpStatusCode.NotFound)
+                if (response.StatusCode == HttpStatusCode.NotFound)
                 {
                     tcs.SetResult(default(T));
                 }
@@ -146,7 +160,7 @@ namespace YelpSharp
                     }
                 }
             });
-            
+
             return tcs.Task;
         }
 
