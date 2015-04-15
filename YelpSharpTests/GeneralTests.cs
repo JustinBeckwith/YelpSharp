@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System.Linq;
 using YelpSharp;
 using YelpSharp.Data.Options;
 
@@ -98,7 +98,7 @@ namespace YelpSharpTests
             }
             Console.WriteLine(results);
         }
-        
+
         /// <summary>
         /// Test search with location and search term
         /// </summary>
@@ -120,7 +120,7 @@ namespace YelpSharpTests
 
             var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.businesses != null);
-            Assert.IsTrue(results.businesses.Count > 0);            
+            Assert.IsTrue(results.businesses.Count > 0);
         }
 
         /// <summary>
@@ -171,9 +171,9 @@ namespace YelpSharpTests
 
             var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.businesses != null);
-            Assert.IsTrue(results.businesses.Count > 0);           
+            Assert.IsTrue(results.businesses.Count > 0);
         }
-        
+
         /// <summary>
         /// test loading a business explicitely by name
         /// </summary>
@@ -184,7 +184,7 @@ namespace YelpSharpTests
             var results = y.GetBusiness("yelp-san-francisco").Result;
             Assert.IsTrue(results != null);
         }
-        
+
         /// <summary>
         /// perform a search with multiple categories on the general options filter
         /// </summary>
@@ -235,6 +235,17 @@ namespace YelpSharpTests
 
             Console.WriteLine(results);
         }
-               
+
+
+        [TestMethod]
+        public void SearchByPhoneTest()
+        {
+            var y = new Yelp(Config.Options);
+            var results = y.SearchByPhone("4159083801").Result;
+            Assert.IsNotNull(results);
+            Assert.IsNotNull(results.businesses);
+            Assert.IsNotNull(results.businesses.FirstOrDefault());
+            Assert.AreEqual<string>("yelp-san-francisco", results.businesses.First().id);
+        }
     }
 }
