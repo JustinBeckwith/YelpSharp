@@ -19,14 +19,9 @@ namespace YelpSharp.Data.Options
         #region Properties
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country code. Default country to use when parsing the location field. United States = US, Canada = CA, United Kingdom = GB (not UK).
+        /// Specify the locale to return the business information in. See the list of supported locales: https://www.yelp.com/developers/documentation/v3/supported_locales
         /// </summary>
-        public string cc { get; set; }
-
-        /// <summary>
-        /// ISO 639 language code (default=en). Reviews written in the specified language will be shown.
-        /// </summary>
-        public string lang { get; set; }
+        public string locale { get; set; }
 
         #endregion
 
@@ -45,8 +40,7 @@ namespace YelpSharp.Data.Options
         public override Dictionary<string, string> GetParameters()
         {
             var ps = new Dictionary<string, string>();
-            if (!String.IsNullOrEmpty(cc)) ps.Add("cc", this.cc);
-            if (!String.IsNullOrEmpty(lang)) ps.Add("lang", this.lang);
+            if (!String.IsNullOrEmpty(locale)) ps.Add("locale", locale);
             return ps;
         }
 

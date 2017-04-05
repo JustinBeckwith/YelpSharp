@@ -7,11 +7,9 @@ namespace YelpSharp
 {
 	public class Options
 	{
-		public string ConsumerKey { get; set; }
-		public string ConsumerSecret { get; set; }
+		public string AppId { get; set; }
+		public string AppSecret { get; set; }
 		public string AccessToken { get; set; }
-		public string AccessTokenSecret { get; set; }	
-	
 	}
 }
 

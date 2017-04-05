@@ -14,10 +14,5 @@ namespace YelpSharp.Data
         /// Center position of map bounds
         /// </summary>
 		public Coordinate center { get; set; }
-
-        /// <summary>
-        /// Span of suggested map bounds
-        /// </summary>
-		public Span span { get; set;  }		
 	}
 }

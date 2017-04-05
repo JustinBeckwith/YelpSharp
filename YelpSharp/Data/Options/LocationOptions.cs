@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 
 namespace YelpSharp.Data.Options
 {
@@ -27,10 +26,14 @@ namespace YelpSharp.Data.Options
         public string location { get; set; }
 
         /// <summary>
-        /// An optional latitude, longitude parameter can also be specified as a hint to the geocoder to disambiguate the location text.
-        /// The format for this is defined as:   ?cll=latitude,longitude
+        /// Latitude of geo-point to search near (required)
         /// </summary>
-        public CoordinateOptions coordinates { get; set; }
+        public double? latitude { get; set; }
+
+        /// <summary>
+        /// Longitude of geo-point to search near (required)
+        /// </summary>
+        public double? longitude { get; set; }
 
         #endregion
 
@@ -51,15 +54,16 @@ namespace YelpSharp.Data.Options
         public override Dictionary<string, string> GetParameters()
         {
             // location is a required field
-            if (String.IsNullOrEmpty(location))
-                throw new InvalidOperationException("To perform a location based search, the location property must contain an area within to search.  For coordinate based searches, use the CoordinateOption class.");
+            if ((String.IsNullOrEmpty(location) && !latitude.HasValue && !longitude.HasValue) ||
+                (latitude.HasValue && !longitude.HasValue) ||
+                (longitude.HasValue && !latitude.HasValue))
+                throw new InvalidOperationException("To perform a location based search, the location or lat/lng must be set.  For coordinate based searches, use the lat/lng parameters.");
 
             var ps = new Dictionary<string, string>();
-            ps.Add("location", this.location);
-
-            // if coordinates are specified add those to the parameters hash
-            if (coordinates != null && coordinates.longitude.HasValue && coordinates.latitude.HasValue)
-                ps.Add("cll", string.Format("{0},{1}", coordinates.latitude, coordinates.longitude));
+            if (!String.IsNullOrEmpty(location)) ps.Add("location", location);
+            if (latitude.HasValue) ps.Add("latitude", latitude.Value.ToString(CultureInfo.InvariantCulture));
+            if (longitude.HasValue) ps.Add("longitude", longitude.Value.ToString(CultureInfo.InvariantCulture));
+            
             
             return ps;
         }
