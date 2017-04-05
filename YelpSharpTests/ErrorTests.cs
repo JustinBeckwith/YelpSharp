@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Configuration;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using YelpSharp;
 using YelpSharp.Data;
 using YelpSharp.Data.Options;
@@ -51,13 +48,6 @@ namespace YelpSharpTests
         //
         //--------------------------------------------------------------------------
 
-        public ErrorTests()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
         //--------------------------------------------------------------------------
         //
         //	Test Methods
@@ -87,33 +77,24 @@ namespace YelpSharpTests
         #endregion
 
         /// <summary>
-        /// Verify UNAVAILABLE_FOR_LOCATION is returned in error.id
+        /// Verify LOCATION_NOT_FOUND is returned in error.code
         /// </summary>
         [TestMethod]
-        public void ErrorTest_UNAVAILABLE_FOR_LOCATION()
+        public void ErrorTest_LOCATION_NOT_FOUND()
         {
             var y = new Yelp(Config.Options);
 
-            var searchOptions = new SearchOptions()
-            {
-                LocationOptions = new CoordinateOptions()
-                {
-                    latitude = 1,
-                    longitude = 1
-                }
-            };
-
-            var results = y.Search(searchOptions).Result;
+            var results = y.Search("asbdgaosidugfnasdfn", "some fake place").Result;
             Assert.IsTrue(results.error != null);
-            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNAVAILABLE_FOR_LOCATION);
+            Assert.IsTrue(results.error.code == ErrorCode.LOCATION_NOT_FOUND.ToString());
             Console.WriteLine(results);
         }
 
         /// <summary>
-        ///  Verify UNSPECIFIED_LOCATION is returned in error.id
+        ///  Verify UNSPECIFIED_LOCATION is returned in error.code
         /// </summary>
         [TestMethod]
-        public void ErrorTest_UNSPECIFIED_LOCATION()
+        public void ErrorTest_VALIDATION_ERROR()
         {            
             var y = new Yelp(Config.Options);
 
@@ -121,7 +102,7 @@ namespace YelpSharpTests
 
             var results = y.Search(searchOptions).Result;
             Assert.IsTrue(results.error != null);
-            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
+            Assert.IsTrue(results.error.code == ErrorCode.VALIDATION_ERROR.ToString());
             Console.WriteLine(results);
         }
 
@@ -132,6 +113,26 @@ namespace YelpSharpTests
             Business business = y.GetBusiness("foo-bar").Result;
 
             Assert.IsNull(business);
+        }
+
+        /// <summary>
+        ///  Verify AREA_TOO_LARGE is returned in error.code
+        /// </summary>
+        [TestMethod]
+        public void ErrorTest_AREA_TOO_LARGE()
+        {
+            var yelp = new Yelp(Config.Options);
+            var searchOptions = new SearchOptions
+            {
+                GeneralOptions = new GeneralOptions { term = "food", radius = 999999999 },
+                LocationOptions = new LocationOptions
+                {
+                    location = "bellevue"
+                }
+            };
+            var results = yelp.Search(searchOptions).Result;
+            Assert.IsTrue(results.error.code == ErrorCode.AREA_TOO_LARGE.ToString() || results.error.code == ErrorCode.VALIDATION_ERROR.ToString());
+            Console.WriteLine(results);
         }
     }
 }

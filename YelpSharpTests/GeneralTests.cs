@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using YelpSharp;
 using YelpSharp.Data.Options;
 
@@ -49,13 +48,6 @@ namespace YelpSharpTests
         //
         //--------------------------------------------------------------------------
 
-        public GeneralTests()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
         //--------------------------------------------------------------------------
         //
         //	Test Methods
@@ -94,7 +86,7 @@ namespace YelpSharpTests
             var results = y.Search("coffee", "seattle, wa").Result;
             if (results.error != null)
             {
-                Assert.Fail(results.error.text);
+                Assert.Fail(results.error.code);
             }
             Console.WriteLine(results);
         }
@@ -108,12 +100,12 @@ namespace YelpSharpTests
             var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions();
-            searchOptions.GeneralOptions = new GeneralOptions()
+            searchOptions.GeneralOptions = new GeneralOptions
             {
                 term = "coffee"
             };
 
-            searchOptions.LocationOptions = new LocationOptions()
+            searchOptions.LocationOptions = new LocationOptions
             {
                 location = "seattle"
             };
@@ -132,13 +124,13 @@ namespace YelpSharpTests
             var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions();
-            searchOptions.GeneralOptions = new GeneralOptions()
+            searchOptions.GeneralOptions = new GeneralOptions
             {
                 term = "coffee $&`:<>[]{}\"#%@/;=?\\^|~', tea"
                 //term = "coffee $`:<>[]{}\"#%@/;=?\\^|~', tea"
             };
 
-            searchOptions.LocationOptions = new LocationOptions()
+            searchOptions.LocationOptions = new LocationOptions
             {
                 location = "seattle"
             };
@@ -192,10 +184,10 @@ namespace YelpSharpTests
         public void MultipleCategories()
         {
             var yelp = new Yelp(Config.Options);
-            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            var searchOptions = new SearchOptions
             {
-                GeneralOptions = new GeneralOptions() { category_filter = "climbing,bowling" },
-                LocationOptions = new LocationOptions()
+                GeneralOptions = new GeneralOptions { categories = "climbing,bowling" },
+                LocationOptions = new LocationOptions
                 {
                     location = "Seattle"
                 }
@@ -211,14 +203,14 @@ namespace YelpSharpTests
         public void LimitTest()
         {
             var y = new Yelp(Config.Options);
-            var searchOptions = new SearchOptions()
+            var searchOptions = new SearchOptions
             {
-                GeneralOptions = new GeneralOptions()
+                GeneralOptions = new GeneralOptions
                 {
                     term = "coffee",
-                    limit = 15,
+                    limit = 15
                 },
-                LocationOptions = new LocationOptions()
+                LocationOptions = new LocationOptions
                 {
                     location = "seattle, wa"
                 }
@@ -226,11 +218,11 @@ namespace YelpSharpTests
             var results = y.Search(searchOptions).Result;
             if (results.error != null)
             {
-                Assert.Fail(results.error.text);
+                Assert.Fail(results.error.code);
             }
             if (results.businesses.Count != 15)
             {
-                Assert.Fail(string.Format("Limit test returned {0} results instead of 15", results.businesses.Count));
+                Assert.Fail("Limit test returned {0} results instead of 15", results.businesses.Count);
             }
 
             Console.WriteLine(results);
@@ -241,11 +233,11 @@ namespace YelpSharpTests
         public void SearchByPhoneTest()
         {
             var y = new Yelp(Config.Options);
-            var results = y.SearchByPhone("4159083801").Result;
+            var results = y.SearchByPhone("+14159083801").Result;
             Assert.IsNotNull(results);
             Assert.IsNotNull(results.businesses);
             Assert.IsNotNull(results.businesses.FirstOrDefault());
-            Assert.AreEqual<string>("yelp-san-francisco", results.businesses.First().id);
+            Assert.AreEqual("yelp-san-francisco", results.businesses.First().id);
         }
     }
 }
