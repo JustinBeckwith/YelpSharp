@@ -22,21 +22,17 @@ namespace MvcSample
             get
             {
                 if (_options == null)
-                {
+                {                                        
                     // get all of the options out of EnvironmentSettings.  You can easily just put your own keys in here without
                     // doing the env dance, if you so choose
-                    _options = new Options()
+                    _options = new Options
                     {
-                        AccessToken = Environment.GetEnvironmentVariable("YELP_ACCESS_TOKEN", EnvironmentVariableTarget.Machine),
-                        AccessTokenSecret = Environment.GetEnvironmentVariable("YELP_ACCESS_TOKEN_SECRET", EnvironmentVariableTarget.Machine),
-                        ConsumerKey = Environment.GetEnvironmentVariable("YELP_CONSUMER_KEY", EnvironmentVariableTarget.Machine),
-                        ConsumerSecret = Environment.GetEnvironmentVariable("YELP_CONSUMER_SECRET", EnvironmentVariableTarget.Machine)
+                        AppId = Environment.GetEnvironmentVariable("YELP_APP_ID", EnvironmentVariableTarget.User),
+                        AppSecret = Environment.GetEnvironmentVariable("YELP_APP_SECRET", EnvironmentVariableTarget.User)
                     };
 
-                    if (String.IsNullOrEmpty(_options.AccessToken) ||
-                        String.IsNullOrEmpty(_options.AccessTokenSecret) ||
-                        String.IsNullOrEmpty(_options.ConsumerKey) ||
-                        String.IsNullOrEmpty(_options.ConsumerSecret))
+                    if (String.IsNullOrEmpty(_options.AppId) ||
+                        String.IsNullOrEmpty(_options.AppSecret))
                     {
                         throw new InvalidOperationException("No OAuth info available.  Please modify Config.cs to add your YELP API OAuth keys");
                     }

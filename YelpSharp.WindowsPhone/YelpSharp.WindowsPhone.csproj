@@ -94,9 +94,6 @@
     <Compile Include="..\YelpSharp\Data\Coordinate.cs">
       <Link>Data\Coordinate.cs</Link>
     </Compile>
-    <Compile Include="..\YelpSharp\Data\SearchError.cs">
-      <Link>Data\SearchError.cs</Link>
-    </Compile>
     <Compile Include="..\YelpSharp\Data\Deal.cs">
       <Link>Data\Deal.cs</Link>
     </Compile>
@@ -108,12 +105,6 @@
     </Compile>
     <Compile Include="..\YelpSharp\Data\Options\BaseOptions.cs">
       <Link>Data\Options\BaseOptions.cs</Link>
-    </Compile>
-    <Compile Include="..\YelpSharp\Data\Options\BoundOptions.cs">
-      <Link>Data\Options\BoundOptions.cs</Link>
-    </Compile>
-    <Compile Include="..\YelpSharp\Data\Options\CoordinateOptions.cs">
-      <Link>Data\Options\CoordinateOptions.cs</Link>
     </Compile>
     <Compile Include="..\YelpSharp\Data\Options\GeneralOptions.cs">
       <Link>Data\Options\GeneralOptions.cs</Link>
@@ -136,9 +127,6 @@
     <Compile Include="..\YelpSharp\Data\SearchResults.cs">
       <Link>Data\SearchResults.cs</Link>
     </Compile>
-    <Compile Include="..\YelpSharp\Data\Span.cs">
-      <Link>Data\Span.cs</Link>
-    </Compile>
     <Compile Include="..\YelpSharp\Data\User.cs">
       <Link>Data\User.cs</Link>
     </Compile>
@@ -155,16 +143,21 @@
       <Link>
       </Link>
     </Compile>
+    <Compile Include="Data\AccessToken.cs" />
+    <Compile Include="Data\ApiResponse.cs" />
+    <Compile Include="Data\Hours.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <Link>Yelp.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp.WindowsPhone">
-      <HintPath>..\packages\RestSharp.104.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\windowsphone8\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

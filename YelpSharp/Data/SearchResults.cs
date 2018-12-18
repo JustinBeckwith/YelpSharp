@@ -5,7 +5,7 @@ namespace YelpSharp.Data
     /// <summary>
     /// general search results data after calling the search api
     /// </summary>
-    public class SearchResults
+    public class SearchResults : ApiResponse
     {
         /// <summary>
         /// The list of business entries (see http://www.yelp.com/developers/documentation/v2/search_api#business)
@@ -21,10 +21,5 @@ namespace YelpSharp.Data
         /// Total number of business results
         /// </summary>
         public int total { get; set; }
-
-        /// <summary>
-        /// Error returned by Yelp Api, null if none
-        /// </summary>
-        public SearchError error { get; set; }
     }
 }

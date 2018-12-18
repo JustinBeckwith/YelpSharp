@@ -1,30 +1,32 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace YelpSharp.Data
 {
-    /// <summary>
-    /// general error result data after calling the search api
-    /// </summary>
-    public class SearchError
+    public class ApiResponse
     {
         /// <summary>
-        /// Short description of error
+        /// Only is returned at the base of an api response when an error occurs
         /// </summary>
-        public string text { get; set; }
+        public ResponseError error { get; set; }
+    }
+    public class ResponseError
+    {
         /// <summary>
-        /// Enum of possible error id's
+        /// Error code
         /// </summary>
-        public ErrorId id { get; set; }
+        public string code { get; set; }
+
         /// <summary>
-        /// Lengthier version of text, null for some errors
+        /// Long description of error that occurred
         /// </summary>
         public string description { get; set; }
-        /// <summary>
-        /// Field with error, null for some errors
-        /// </summary>
-        public string field { get; set; }
     }
 
-    public enum ErrorId
+    public enum ErrorCode
     {
         INTERNAL_ERROR,
         EXCEEDED_REQS,
@@ -41,4 +43,5 @@ namespace YelpSharp.Data
         BUSINESS_UNAVAILABLE,
         UNSPECIFIED_LOCATION
     }
+
 }

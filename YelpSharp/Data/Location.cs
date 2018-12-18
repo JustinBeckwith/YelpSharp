@@ -11,19 +11,19 @@ namespace YelpSharp.Data
 	public class Location
 	{
         /// <summary>
-        /// Coordinates for this business
+        /// Address line 1 for this business. Only includes address fields.
         /// </summary>
-        public Coordinate coordinate { get; set; }
+		public string address1 { get; set; }
 
         /// <summary>
-        /// Address for this business. Only includes address fields.
+        /// Address line 2 for this business. Only includes address fields.
         /// </summary>
-		public string[] address { get; set; }
-
+		public string address2 { get; set; }
         /// <summary>
-        /// Address for this business formatted for display. Includes all address fields, cross streets and city, state_code, etc.
+        /// 
+        /// Address line 3 for this business. Only includes address fields.
         /// </summary>
-		public string[] display_address { get; set;  }
+		public string address3 { get; set; }
 
         /// <summary>
         /// City for this business
@@ -33,31 +33,26 @@ namespace YelpSharp.Data
         /// <summary>
         /// ISO 3166-2 state code for this business (http://en.wikipedia.org/wiki/ISO_3166-2)
         /// </summary>
-        public string state_code { get; set; }
+        public string state { get; set; }
 
         /// <summary>
         /// Postal code for this business (http://en.wikipedia.org/wiki/Postal_code)
         /// </summary>
-        public string postal_code { get; set; }
+        public string zip_code { get; set; }
 
         /// <summary>
         /// ISO 3166-1 country code for this business (http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
         /// </summary>
-        public string country_code { get; set; }
+        public string country { get; set; }
+
+        /// <summary>
+        /// Address for this business formatted for display. Includes all address fields, cross streets and city, state_code, etc.
+        /// </summary>
+		public string[] display_address { get; set;  }
 
         /// <summary>
         /// Cross streets for this business
         /// </summary>
         public string cross_streets { get; set; }
-
-        /// <summary>
-        /// List that provides neighborhood(s) information for business
-        /// </summary>
-        public string[] neighborhoods { get; set; }
-
-        /// <summary>
-        /// Contains a value that corresponds to the accuracy with which the latitude / longitude was determined in the geocoder. These correspond to Google's GGeoAddressAccuracy field. (http://code.google.com/apis/maps/documentation/javascript/v2/reference.html#GGeoAddressAccuracy)
-        /// </summary>
-        public double geo_accuracy { get; set; }
 	}
 }

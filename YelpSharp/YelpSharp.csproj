@@ -33,13 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,16 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AccessToken.cs" />
+    <Compile Include="Data\ApiResponse.cs" />
     <Compile Include="Data\Business.cs" />
     <Compile Include="Data\Category.cs" />
     <Compile Include="Data\Coordinate.cs" />
-    <Compile Include="Data\SearchError.cs" />
+    <Compile Include="Data\Hours.cs" />
     <Compile Include="Data\Deal.cs" />
     <Compile Include="Data\DealOptions.cs" />
     <Compile Include="Data\Location.cs" />
     <Compile Include="Data\Options\BaseOptions.cs" />
-    <Compile Include="Data\Options\BoundOptions.cs" />
-    <Compile Include="Data\Options\CoordinateOptions.cs" />
     <Compile Include="Data\Options\GeneralOptions.cs" />
     <Compile Include="Data\Options\LocaleOptions.cs" />
     <Compile Include="Data\Options\LocationOptionBase.cs" />
@@ -67,7 +67,6 @@
     <Compile Include="Data\Region.cs" />
     <Compile Include="Data\Review.cs" />
     <Compile Include="Data\SearchResults.cs" />
-    <Compile Include="Data\Span.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Data\Options\SearchOptions.cs" />
@@ -76,9 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

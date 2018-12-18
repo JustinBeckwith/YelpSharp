@@ -5,16 +5,17 @@ using System.Text;
 
 namespace YelpSharp.Data
 {
+    public class Reviews : ApiResponse
+    {
+        public Review[] reviews { get; set; }
+        public int total { get; set; }
+    }
+
     /// <summary>
     /// customer reviews of the business
     /// </summary>
     public class Review
     {
-        
-        /// <summary>
-        /// Review identifier
-        /// </summary>
-        public string id { get; set; }
 
         /// <summary>
         /// Rating from 1-5
@@ -22,34 +23,24 @@ namespace YelpSharp.Data
         public double rating { get; set; }
 
         /// <summary>
-        /// URL to star rating image for this business (size = 84x17)
-        /// </summary>
-        public string rating_img_url { get; set; }
-
-        /// <summary>
-        /// URL to small version of rating image for this business (size = 50x10)
-        /// </summary>
-        public string rating_img_url_small { get; set; }
-
-        /// <summary>
-        /// url	URL to large version of rating image for this business (size = 166x30)
-        /// </summary>
-        public string rating_img_url_large { get; set; }
-
-        /// <summary>
-        /// Time created (Unix timestamp)
-        /// </summary>
-        public double time_created { get; set; }
-
-        /// <summary>
         /// User who wrote the review
         /// </summary>
         public User user { get; set; }
 
         /// <summary>
-        /// Excerpt of the review
+        /// Text of the review
         /// </summary>
-        public string excerpt { get; set; }
+        public string text { get; set; }
+
+        /// <summary>
+        /// Time of the review
+        /// </summary>
+        public DateTime time_created { get; set; }
+
+        /// <summary>
+        /// Url of the review
+        /// </summary>
+        public string url { get; set; }
        
     }
 }

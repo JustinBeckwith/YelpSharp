@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using YelpSharp;
+using YelpSharp.Data;
 using YelpSharp.Data.Options;
 
 namespace YelpSharpTests
@@ -49,13 +48,6 @@ namespace YelpSharpTests
         //
         //--------------------------------------------------------------------------
 
-        public LocationTests()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
         //--------------------------------------------------------------------------
         //
         //	Test Methods
@@ -94,12 +86,12 @@ namespace YelpSharpTests
             var y = new Yelp(Config.Options);
 
             var searchOptions = new SearchOptions();
-            searchOptions.GeneralOptions = new GeneralOptions()
+            searchOptions.GeneralOptions = new GeneralOptions
             {
                 term = "coffee"
             };
 
-            searchOptions.LocationOptions = new LocationOptions()
+            searchOptions.LocationOptions = new LocationOptions
             {
                 location = "seattle"
             };
@@ -117,17 +109,12 @@ namespace YelpSharpTests
         {
             var yelp = new Yelp(Config.Options);
 
-            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            var searchOptions = new SearchOptions
             {
-                GeneralOptions = new GeneralOptions() { term = "food" },
-                LocationOptions = new LocationOptions()
+                GeneralOptions = new GeneralOptions { term = "food" },
+                LocationOptions = new LocationOptions
                 {
-                    location = "bellevue",
-                    coordinates = new CoordinateOptions()
-                    {
-                        latitude = 37.788022,
-                        longitude = -122.399797
-                    }
+                    location = "bellevue"
                 }
             };
 
@@ -142,30 +129,9 @@ namespace YelpSharpTests
         public void LocationByCoordinates()
         {
             var yelp = new Yelp(Config.Options);
-            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            var searchOptions = new SearchOptions
             {
-                LocationOptions = new BoundOptions()
-                {
-                    sw_latitude = 37.9,
-                    sw_longitude = -122.5,
-                    ne_latitude = 37.788022,
-                    ne_longitude = -122.399797
-                }
-            };
-            var results = yelp.Search(searchOptions).Result;
-            Assert.IsTrue(results.businesses.Count > 0);
-        }
-
-        /// <summary>
-        /// check using bounds location options
-        /// </summary>
-        [TestMethod]
-        public void LocationByBounds()
-        {
-            var yelp = new Yelp(Config.Options);
-            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
-            {
-                LocationOptions = new CoordinateOptions()
+                LocationOptions = new LocationOptions
                 {
                     latitude = 37.788022,
                     longitude = -122.399797
@@ -182,12 +148,13 @@ namespace YelpSharpTests
         public void VerifyCoordinatesWithRadius()
         {
             var yelp = new Yelp(Config.Options);
-            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            var searchOptions = new SearchOptions
             {
-                GeneralOptions = new GeneralOptions() {
-                    radius_filter = 3000
+                GeneralOptions = new GeneralOptions
+                {
+                    radius = 3000
                 },
-                LocationOptions = new CoordinateOptions()
+                LocationOptions = new LocationOptions
                 {
                     latitude = 47.603525,
                     longitude = -122.329580
@@ -204,10 +171,10 @@ namespace YelpSharpTests
         public void LocationWithRadius()
         {
             var yelp = new Yelp(Config.Options);
-            var searchOptions = new YelpSharp.Data.Options.SearchOptions()
+            var searchOptions = new SearchOptions
             {
-                GeneralOptions = new GeneralOptions() { term = "food", radius_filter = 5 },
-                LocationOptions = new LocationOptions()
+                GeneralOptions = new GeneralOptions { term = "food", radius = 8000 },
+                LocationOptions = new LocationOptions
                 {
                     location = "bellevue"
                 }
@@ -226,28 +193,12 @@ namespace YelpSharpTests
             var results = y.Search("coffee", "seattle, wa").Result;
             if (results.error != null)
             {
-                Assert.Fail(results.error.text);
+                Assert.Fail(results.error.code);
             }
             var bus = results.businesses[0];
-            if (bus.location.coordinate == null)
+            if (bus.location.address1 == null)
                 Assert.Fail("No coordinate found on location for business");
 
-        }
-
-        /// <summary>
-        ///  Verify UNSPECIFIED_LOCATION is returned in error.id
-        /// </summary>
-        [TestMethod]
-        public void ErrorTest_UNSPECIFIED_LOCATION()
-        {
-            var y = new Yelp(Config.Options);
-
-            var searchOptions = new SearchOptions();
-
-            var results = y.Search(searchOptions).Result;
-            Assert.IsTrue(results.error != null);
-            Assert.IsTrue(results.error.id == YelpSharp.Data.ErrorId.UNSPECIFIED_LOCATION);
-            Console.WriteLine(results);
         }
     }
 }
